@@ -1,8 +1,8 @@
 ---
-title: "Huile essentielle anti moustique : le guide complet"
+title: "Quel anti-moustique naturel choisir ?"
 date: 2026-04-12
 lastmod: 2026-04-12
-description: "Quelles huiles essentielles repoussent les moustiques ? Guide des HE anti-moustiques les plus efficaces et conseils d'utilisation."
+description: "Huile essentielle anti moustique : les HE les plus efficaces, dosages, precautions et produits Pranarom pour se proteger naturellement."
 categories: ["Huiles Essentielles", "Nuisibles"]
 tags: ["anti-moustique", "citronnelle", "eucalyptus citronne", "geranium", "Pranarom"]
 author: "La Redaction"

@@ -1,6 +1,6 @@
 # Skill : Creer un article
 
-Ce skill genere un article de blog optimise SEO et/ou GEO selon le type choisi.
+Ce skill genere un article de blog optimise SEO et GEO (Generative Engine Optimization) selon le type choisi.
 
 ## Declenchement
 
@@ -18,13 +18,14 @@ Si le fichier `MEMORY.md` n'existe pas encore, le creer vide (il sera rempli a l
 
 ## Etape 1 — Collecter les informations
 
-### Mot-cle et categorie
+### Prompt GEO et query fan-out
 
 Demander a l'utilisateur :
-- **Mot-cle principal** : le terme sur lequel l'article doit se positionner
-- **Categorie** : dans quelle categorie du blog ? (proposer les categories existantes du site, definies dans hugo.toml ou visibles dans content/blog/). L'utilisateur DOIT choisir une categorie, ne pas passer cette etape
+- **Prompt GEO cible** : la question exacte que les utilisateurs posent aux moteurs IA generatifs (ChatGPT, Perplexity, Google AI Overviews). Ce prompt deviendra le **H1 de l'article**. C'est une question naturelle, pas un mot-cle optimise. Exemple : "Quel anti-moustique naturel choisir ?"
+- **Query fan-out (mot-cle SEO)** : le terme SEO sur lequel l'article se positionne dans Google. Il decoule du prompt et represente la recherche "classique" associee. Exemple : "huile essentielle anti moustique". Si l'utilisateur ne fournit pas de query fan-out, la determiner a partir du prompt en choisissant un mot-cle avec du volume de recherche.
+- **Categorie** : dans quelle categorie du blog ? (proposer les categories existantes du site, definies dans hugo.toml ou visibles dans content/blog/). L'utilisateur DOIT choisir une categorie, ne pas passer cette etape.
 
-Si l'utilisateur n'a pas de mot-cle precis, l'aider a en choisir un en fonction de la thematique du site.
+Si l'utilisateur ne fournit qu'un mot-cle sans prompt, l'aider a formuler le prompt GEO correspondant (transformer le mot-cle en question naturelle).
 
 ### Type d'article
 
@@ -39,7 +40,7 @@ Types disponibles par defaut :
 
 **IMPORTANT :** Toujours lire le contenu reel de `.claude/templates/articles/` au moment de l'execution. Si de nouveaux fichiers template ont ete ajoutes par l'utilisateur, les proposer aussi. Le dossier fait reference, pas ce tableau.
 
-Si l'utilisateur ne sait pas quel type choisir, l'aider en analysant l'intention de recherche du mot-cle.
+Si l'utilisateur ne sait pas quel type choisir, l'aider en analysant l'intention de recherche du prompt.
 
 ### Informations complementaires selon le type
 
@@ -56,7 +57,7 @@ Lister tous les articles existants dans `content/blog/` en lisant le sitemap (`c
 
 ### Verification de cannibalisation
 
-Verifier qu'aucun article existant ne cible deja le meme mot-cle principal. Si cannibalisation detectee, prevenir l'utilisateur et proposer un angle different.
+Verifier qu'aucun article existant ne cible deja le meme mot-cle principal ou le meme prompt GEO. Si cannibalisation detectee, prevenir l'utilisateur et proposer un angle different.
 
 ### Identification des liens internes
 
@@ -67,7 +68,7 @@ Identifier **au minimum 3 articles existants** thematiquement proches du nouvel 
 
 **Regles de maillage interne :**
 - **Minimum 3 liens internes** vers d'autres articles du blog, inseres de maniere contextuelle dans le corps de l'article
-- L'**ancre du lien** (le texte cliquable) doit contenir le **mot-cle principal de l'article cible** — pas de "cliquez ici" ou "lire aussi"
+- L'**ancre du lien** (le texte cliquable) doit contenir le **mot-cle principal de l'article cible**, pas de "cliquez ici" ou "lire aussi"
 - Les liens doivent etre **naturels et contextuels** : inseres dans une phrase qui a du sens, pas en liste en bas de page
 - Repartir les liens dans differentes sections de l'article (pas tous au meme endroit)
 
@@ -85,28 +86,45 @@ Lire le template correspondant dans `.claude/templates/articles/[type-choisi].md
 
 | Champ | Regle |
 |-------|-------|
-| `title` | Contient le mot-cle principal, max ~60 caracteres |
-| `description` | Meta description, max 140 caracteres, contient le mot-cle |
+| `title` | **= prompt GEO cible** (la question naturelle posee aux moteurs IA). C'est le H1 de l'article. Max ~60 caracteres. Contient le mot-cle principal si possible, mais la formulation naturelle du prompt prime |
+| `description` | Meta description optimisee pour la SERP. Max 140 caracteres, contient la query fan-out (mot-cle SEO). Peut differer du title/H1 car elle est optimisee pour le clic Google |
 | `date` | Date du jour (YYYY-MM-DD) |
-| `lastmod` | Date du jour (YYYY-MM-DD) — identique a `date` a la creation. Mettre a jour si l'article est modifie plus tard |
+| `lastmod` | Date du jour (YYYY-MM-DD), identique a `date` a la creation. Mettre a jour si l'article est modifie plus tard |
 | `categories` | La categorie choisie |
 | `tags` | 3-6 tags pertinents |
 | `author` | Nom de l'auteur (lire dans le CLAUDE.md section "Contexte du site" > auteur) |
 | `image` | Chemin vers l'image hero (optionnel, ex: `/images/blog/mon-article.jpg`). Utilisee dans le hero, og:image et le schema Article |
 | `imageAlt` | Texte alt de l'image (obligatoire si `image` est present) |
 | `faq` | Liste de questions/reponses pour le schema FAQPage JSON-LD (min. 3). Format YAML : `- question: "..." answer: "..."`. Les questions doivent correspondre a celles de la section FAQ dans le body |
-| Nom du fichier | Slug = mot-cle en minuscules, tirets, sans accents |
+| Nom du fichier | Slug = query fan-out en minuscules, tirets, sans accents |
+
+### Regles GEO (Generative Engine Optimization)
+
+Ces regles sont fondamentales pour que l'article soit cite par les moteurs IA generatifs :
+
+| Regle | Detail |
+|-------|--------|
+| **H1 = prompt cible** | Le H1 (title) est TOUJOURS le prompt exact que l'utilisateur pose aux moteurs IA. C'est une question naturelle, pas un mot-cle optimise |
+| **Query fan-out dans le body** | La query fan-out (mot-cle SEO) doit apparaitre dans le premier paragraphe et dans les variations des H2 |
+| **1 paragraphe = 1 idee** | Chaque paragraphe traite d'une seule idee distincte. Ne jamais melanger plusieurs concepts dans un meme paragraphe. Cela facilite l'extraction par les LLMs |
+| **Quick summary auto-suffisant** | Le bloc "En bref" est le bloc le plus critique : les LLMs l'extraient en priorite. Il doit etre auto-suffisant (comprehensible seul) et contenir les faits cles avec des donnees chiffrees |
+| **H2 explicites et descriptifs** | Pas de titres vagues. Chaque H2 doit etre auto-suffisant et comprehensible hors contexte de l'article |
+| **Donnees chiffrees obligatoires** | Integrer des donnees chiffrees dans chaque section (prix, pourcentages, statistiques, durees). Les LLMs extraient les faits verifiables en priorite |
+| **Tableaux extractibles** | Au moins 1 tableau structurant les informations cles. Les tableaux sont extraits en priorite par les IA generatives |
+| **Citation sourcee obligatoire** | Au moins 1 citation d'une etude, d'un organisme ou d'un expert, avec source et annee. Renforce la credibilite et la citabilite |
 
 ### Regles communes a tous les types
 
 | Spec | Valeur |
 |------|--------|
 | H1 | Jamais dans le body (genere par Hugo depuis le title) |
-| Densite mot-cle | 1-2% |
+| Densite mot-cle | 1-2% (query fan-out) |
 | Mots-cles en gras | Oui, `**mot-cle**` |
 | Ton | Impersonnel (pas de je/tu/nous/vous) sauf si precise autrement dans le CLAUDE.md |
 | Liens internes | Min. 3 liens contextuels vers des articles existants (ancre = mot-cle de l'article cible) |
 | FAQ | 3-5 questions en fin d'article |
+| Separateurs | JAMAIS de separateur horizontal (---) entre les sections |
+| Tirets | JAMAIS de tiret cadratin ni demi-cadratin. Utiliser des virgules, des points ou reformuler |
 
 ### Regles specifiques par type
 
@@ -120,20 +138,29 @@ Lire les commentaires HTML `<!-- NOTES POUR CLAUDE -->` en bas du template chois
 
 ## Etape 4 — Verification (checklist)
 
-- [ ] Slug = mot-cle en minuscules, tirets, sans accents
-- [ ] Title contient le mot-cle, < 60 caracteres
-- [ ] Meta description <= 140 caracteres, contient le mot-cle
+- [ ] Slug = query fan-out en minuscules, tirets, sans accents
+- [ ] Title = prompt GEO cible (question naturelle), < 60 caracteres
+- [ ] Meta description <= 140 caracteres, contient la query fan-out (mot-cle SEO)
 - [ ] Auteur renseigne dans le frontmatter
+- [ ] H1 = prompt cible (verifie que c'est bien une question naturelle, pas un mot-cle)
+- [ ] Query fan-out presente dans le premier paragraphe
 - [ ] Structure Hn conforme au type (voir notes du template)
+- [ ] H2 explicites et auto-suffisants (comprehensibles hors contexte)
+- [ ] 1 paragraphe = 1 idee distincte (pas de paragraphes multi-idees)
 - [ ] Nombre de mots minimum atteint (voir notes du template)
+- [ ] Donnees chiffrees presentes dans chaque section
 - [ ] Mots-cles en gras
 - [ ] Ton correct
 - [ ] Min. 3 liens internes contextuels (ancres = mots-cles des articles cibles)
 - [ ] Blocs obligatoires presents selon le type
+- [ ] Quick summary "En bref" auto-suffisant avec donnees chiffrees
+- [ ] Au moins 1 tableau recapitulatif
+- [ ] Au moins 1 citation sourcee (source + annee)
 - [ ] FAQ presente avec balises `<details>/<summary>` (accordeon) dans le body
 - [ ] FAQ presente dans le frontmatter (champ `faq`, min. 3 questions) pour le schema FAQPage JSON-LD
 - [ ] Les questions FAQ du frontmatter et du body correspondent
 - [ ] `image` et `imageAlt` renseignes si une image est disponible
+- [ ] Pas de separateur horizontal (---) ni de tiret cadratin/demi-cadratin
 - [ ] Build Hugo OK (`hugo`)
 
 ## Etape 5 — Sauvegarde et build
@@ -144,6 +171,8 @@ hugo
 
 Afficher a l'utilisateur :
 - Type d'article utilise
+- Prompt GEO (H1)
+- Query fan-out (mot-cle SEO)
 - Nombre de mots
 - Nombre de H2
 - Liens internes ajoutes
