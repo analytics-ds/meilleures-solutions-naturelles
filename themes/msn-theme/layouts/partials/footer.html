@@ -2,7 +2,7 @@
     <div class="footer-container">
         <div class="footer-grid">
             <div class="footer-col footer-col-about">
-                <a href="{{ "/" | relURL }}" class="footer-logo">
+                <a href="{{ site.Home.RelPermalink }}" class="footer-logo">
                     {{ with .Site.Params.logo }}
                     <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" width="32" height="32">
                     {{ end }}
@@ -19,7 +19,7 @@
                     {{ if $tax }}
                     <li><a href="{{ $tax.Page.RelPermalink }}">{{ $tax.Page.Title }}</a></li>
                     {{ else }}
-                    <li><a href="{{ printf "/categories/%s/" $slug | relURL }}">{{ . }}</a></li>
+                    <li><a href="{{ printf "categories/%s/" $slug | relURL }}">{{ . }}</a></li>
                     {{ end }}
                     {{ end }}
                 </ul>
@@ -33,7 +33,7 @@
                     {{ if $tax }}
                     <li><a href="{{ $tax.Page.RelPermalink }}">{{ $tax.Page.Title }}</a></li>
                     {{ else }}
-                    <li><a href="{{ printf "/categories/%s/" $slug | relURL }}">{{ . }}</a></li>
+                    <li><a href="{{ printf "categories/%s/" $slug | relURL }}">{{ . }}</a></li>
                     {{ end }}
                     {{ end }}
                 </ul>
@@ -41,7 +41,7 @@
             <div class="footer-col">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="{{ "/" | relURL }}">Accueil</a></li>
+                    <li><a href="{{ site.Home.RelPermalink }}">Accueil</a></li>
                     <li><a href="{{ "blog/" | relURL }}">Blog</a></li>
                     <li><a href="{{ "plan-du-site/" | relURL }}">Plan du site</a></li>
                 </ul>

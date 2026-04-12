@@ -36,7 +36,7 @@
                     {{ end }}
                 {{ end }}
                 {{ if not $found }}
-                <a href="{{ printf "/categories/%s/" ($name | urlize) | relURL }}" class="category-card-domaine" {{ with $img }}style="--bg-image: url('{{ . }}')"{{ end }}>
+                <a href="{{ printf "categories/%s/" ($name | urlize) | relURL }}" class="category-card-domaine" {{ with $img }}style="--bg-image: url('{{ . }}')"{{ end }}>
                     <div class="card-domaine-overlay"></div>
                     <div class="card-domaine-content">
                         <span class="card-domaine-icon">{{ $icon }}</span>
@@ -73,7 +73,7 @@
                     {{ end }}
                 {{ end }}
                 {{ if not $found }}
-                <a href="{{ printf "/categories/%s/" ($name | urlize) | relURL }}" class="category-card-besoin" style="--card-accent: {{ $color }}">
+                <a href="{{ printf "categories/%s/" ($name | urlize) | relURL }}" class="category-card-besoin" style="--card-accent: {{ $color }}">
                     <span class="card-besoin-icon">{{ $icon }}</span>
                     <h3>{{ $name }}</h3>
                     <span class="category-count">0 article</span>

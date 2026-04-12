@@ -5,7 +5,7 @@
         <div class="container">
             <div class="article-meta">
                 {{ with .Params.categories }}
-                <a href="{{ "/categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-category">{{ index . 0 }}</a>
+                <a href="{{ printf "categories/%s/" (index . 0 | urlize) | relURL }}" class="article-category">{{ index . 0 }}</a>
                 {{ end }}
                 <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
                 <span class="reading-time">{{ .ReadingTime }} min de lecture</span>
@@ -22,7 +22,7 @@
             {{ end }}
             <div class="article-tags">
                 {{ range .Params.tags }}
-                <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">#{{ . }}</a>
+                <a href="{{ printf "tags/%s/" (. | urlize) | relURL }}" class="tag">#{{ . }}</a>
                 {{ end }}
             </div>
         </div>

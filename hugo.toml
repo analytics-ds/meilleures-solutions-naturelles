@@ -11,12 +11,12 @@ paginate = 12
 # Menu principal (Accueil + Blog, les dropdowns Domaines/Besoins sont geres dans le header partial)
 [[menus.main]]
   name = "Accueil"
-  url = "/"
+  pageRef = "/"
   weight = 1
 
 [[menus.main]]
   name = "Blog"
-  url = "/blog/"
+  pageRef = "/blog"
   weight = 4
 
 [params]
@@ -25,7 +25,7 @@ paginate = 12
   author_url = "https://meilleuresolutionnaturelle.fr/"
   author_job_title = "Equipe editoriale"
   author_bio = "L'equipe editoriale de Meilleures Solutions Naturelles reunit des passionnes de sante naturelle. Chaque article est documente a partir de sources scientifiques fiables et redige dans le respect des bonnes pratiques YMYL."
-  logo = "/images/logo.png"
+  logo = "images/logo.png"
 
   # Categories par domaine
   domaines = ["Aromatherapie", "Huiles Essentielles", "Huiles Vegetales", "Gemmotherapie", "Complements Alimentaires"]

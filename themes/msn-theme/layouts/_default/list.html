@@ -28,7 +28,7 @@
                     <p>{{ .Description }}</p>
                     <div class="article-tags">
                         {{ range .Params.tags }}
-                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">#{{ . }}</a>
+                        <a href="{{ printf "tags/%s/" (. | urlize) | relURL }}" class="tag">#{{ . }}</a>
                         {{ end }}
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <header class="site-header">
     <div class="header-container">
-        <a href="{{ "/" | relURL }}" class="site-logo">
+        <a href="{{ site.Home.RelPermalink }}" class="site-logo">
             {{ with .Site.Params.logo }}
             <img src="{{ . | relURL }}" alt="{{ $.Site.Title }}" width="40" height="40">
             {{ end }}
@@ -12,7 +12,7 @@
         </button>
 
         <nav class="site-nav" role="navigation">
-            <a href="{{ "/" | relURL }}" class="nav-link">Accueil</a>
+            <a href="{{ site.Home.RelPermalink }}" class="nav-link">Accueil</a>
 
             <!-- Dropdown Domaines -->
             <div class="nav-dropdown">
@@ -26,7 +26,7 @@
                     {{ if $tax }}
                     <a href="{{ $tax.Page.RelPermalink }}" class="nav-dropdown-item">{{ $tax.Page.Title }}</a>
                     {{ else }}
-                    <a href="{{ printf "/categories/%s/" $slug | relURL }}" class="nav-dropdown-item">{{ . }}</a>
+                    <a href="{{ printf "categories/%s/" $slug | relURL }}" class="nav-dropdown-item">{{ . }}</a>
                     {{ end }}
                     {{ end }}
                 </div>
@@ -44,7 +44,7 @@
                     {{ if $tax }}
                     <a href="{{ $tax.Page.RelPermalink }}" class="nav-dropdown-item">{{ $tax.Page.Title }}</a>
                     {{ else }}
-                    <a href="{{ printf "/categories/%s/" $slug | relURL }}" class="nav-dropdown-item">{{ . }}</a>
+                    <a href="{{ printf "categories/%s/" $slug | relURL }}" class="nav-dropdown-item">{{ . }}</a>
                     {{ end }}
                     {{ end }}
                 </div>
