@@ -1,20 +1,37 @@
-{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+{{- /* Sitemap propre : 1 URL par ligne, indente, filtre sections a faible valeur SEO */ -}}
+{{- $siteLang := .Site.Language.Lang -}}
+{{- /* Sections a inclure : blog, categories, authors, home, pages statiques */ -}}
+{{- /* Sections a exclure : tags (pages de taxonomie thin), pages vides */ -}}
+{{- $includeSections := slice "blog" "categories" "authors" "" -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-{{- $siteLang := .Site.Language.Lang }}
-{{- $langPrefix := printf "/%s/" $siteLang }}
-{{- range .Data.Pages -}}
-{{- $isSiteLangPage := false }}
-{{- if eq $siteLang "fr" }}
-  {{- if not (hasPrefix .RelPermalink "/en/") }}{{ $isSiteLangPage = true }}{{ end }}
-{{- else }}
-  {{- if hasPrefix .RelPermalink $langPrefix }}{{ $isSiteLangPage = true }}{{ end }}
-{{- end }}
-{{- if and $isSiteLangPage (not .Params.private) (not .Params.noindex) }}
+{{- range .Data.Pages }}
+  {{- $section := .Section }}
+  {{- $keep := false }}
+  {{- if in $includeSections $section }}{{ $keep = true }}{{ end }}
+  {{- /* Exclure les pages taxonomy vides et les pages privees */ -}}
+  {{- if eq .Kind "taxonomy" }}{{ $keep = false }}{{ end }}
+  {{- /* term pages : on inclut uniquement celles qui ont un _index.md explicite */ -}}
+  {{- if eq .Kind "term" }}
+    {{- $hasIndex := false }}
+    {{- with .File }}{{ if hasSuffix .LogicalName "_index.md" }}{{ $hasIndex = true }}{{ end }}{{ end }}
+    {{- if not $hasIndex }}{{ $keep = false }}{{ end }}
+  {{- end }}
+  {{- if .Params.private }}{{ $keep = false }}{{ end }}
+  {{- if .Params.noindex }}{{ $keep = false }}{{ end }}
+  {{- /* Verifier que la page appartient a la langue courante (URL prefix) */ -}}
+  {{- $belongsToLang := false }}
+  {{- if eq $siteLang "fr" }}
+    {{- if not (hasPrefix .RelPermalink "/en/") }}{{ $belongsToLang = true }}{{ end }}
+  {{- else }}
+    {{- if hasPrefix .RelPermalink (printf "/%s/" $siteLang) }}{{ $belongsToLang = true }}{{ end }}
+  {{- end }}
+  {{- if and $keep $belongsToLang }}
   <url>
     <loc>{{ .Permalink }}</loc>
     {{- if not .Lastmod.IsZero }}
-    <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>
+    <lastmod>{{ .Lastmod.Format "2006-01-02" }}</lastmod>
     {{- end }}
     {{- with .Sitemap.ChangeFreq }}
     <changefreq>{{ . }}</changefreq>
@@ -23,18 +40,18 @@
     <priority>{{ .Sitemap.Priority }}</priority>
     {{- end }}
     {{- if .IsTranslated }}
-    {{- $seen := slice $siteLang }}
+      {{- $seen := slice $siteLang }}
     <xhtml:link rel="alternate" hreflang="{{ $siteLang }}" href="{{ .Permalink }}" />
-    {{- range .Translations }}
-    {{- $tLang := .Lang }}
-    {{- if hasPrefix .RelPermalink "/en/" }}{{ $tLang = "en" }}{{ else }}{{ $tLang = "fr" }}{{ end }}
-    {{- if not (in $seen $tLang) }}
+      {{- range .Translations }}
+        {{- $tLang := "fr" }}
+        {{- if hasPrefix .RelPermalink "/en/" }}{{ $tLang = "en" }}{{ end }}
+        {{- if not (in $seen $tLang) }}
     <xhtml:link rel="alternate" hreflang="{{ $tLang }}" href="{{ .Permalink }}" />
-    {{- $seen = $seen | append $tLang }}
-    {{- end }}
-    {{- end }}
+          {{- $seen = $seen | append $tLang }}
+        {{- end }}
+      {{- end }}
     {{- end }}
   </url>
-{{- end }}
+  {{- end }}
 {{- end }}
 </urlset>
