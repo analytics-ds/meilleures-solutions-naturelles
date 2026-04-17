@@ -1,9 +1,60 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{{- range site.Sites }}
-  <sitemap>
-    <loc>{{ printf "%ssitemap.xml" .Home.Permalink }}</loc>
-    <lastmod>{{ now.Format "2006-01-02T15:04:05-07:00" }}</lastmod>
-  </sitemap>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{{- $allPages := slice -}}
+{{- range site.Sites -}}
+  {{- range .RegularPages -}}
+    {{- $allPages = $allPages | append . -}}
+  {{- end -}}
+  {{- range .Sections -}}
+    {{- $allPages = $allPages | append . -}}
+    {{- range .Sections -}}
+      {{- $allPages = $allPages | append . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $allPages = $allPages | append .Home -}}
+{{- end -}}
+{{- range $allPages }}
+  {{- $p := . -}}
+  {{- $keep := true -}}
+  {{- if eq .Kind "taxonomy" }}{{ $keep = false }}{{ end -}}
+  {{- if eq .Kind "term" -}}
+    {{- $hasIndex := false -}}
+    {{- with .File -}}{{ if hasSuffix .LogicalName "_index.md" }}{{ $hasIndex = true }}{{ end }}{{- end -}}
+    {{- if not $hasIndex }}{{ $keep = false }}{{ end -}}
+  {{- end -}}
+  {{- if .Params.private }}{{ $keep = false }}{{ end -}}
+  {{- if .Params.noindex }}{{ $keep = false }}{{ end -}}
+  {{- if $keep -}}
+    {{- $priority := "0.5" -}}
+    {{- $changefreq := "monthly" -}}
+    {{- $rp := .RelPermalink -}}
+    {{- if eq .Kind "home" }}{{ $priority = "1.0" }}{{ $changefreq = "weekly" }}{{ end -}}
+    {{- if or (eq $rp "/blog/") (eq $rp "/en/blog/") }}{{ $priority = "0.9" }}{{ $changefreq = "daily" }}{{ end -}}
+    {{- if and (eq .Kind "page") (or (hasPrefix $rp "/blog/") (hasPrefix $rp "/en/blog/")) }}{{ $priority = "0.8" }}{{ $changefreq = "weekly" }}{{ end -}}
+    {{- if or (hasPrefix $rp "/categories/") (hasPrefix $rp "/en/categories/") }}{{ $priority = "0.7" }}{{ $changefreq = "weekly" }}{{ end -}}
+    {{- if or (hasPrefix $rp "/authors/") (hasPrefix $rp "/en/authors/") }}{{ $priority = "0.6" }}{{ $changefreq = "monthly" }}{{ end }}
+  <url>
+    <loc>{{ $p.Permalink }}</loc>
+    {{- if not $p.Lastmod.IsZero }}
+    <lastmod>{{ $p.Lastmod.Format "2006-01-02" }}</lastmod>
+    {{- end }}
+    <changefreq>{{ $changefreq }}</changefreq>
+    <priority>{{ $priority }}</priority>
+    {{- $pageLang := "fr" -}}
+    {{- if hasPrefix $p.RelPermalink "/en/" }}{{ $pageLang = "en" }}{{ end -}}
+    {{- if $p.IsTranslated }}
+    {{- $seen := slice $pageLang }}
+    <xhtml:link rel="alternate" hreflang="{{ $pageLang }}" href="{{ $p.Permalink }}" />
+    {{- range $p.Translations }}
+    {{- $tLang := "fr" -}}
+    {{- if hasPrefix .RelPermalink "/en/" }}{{ $tLang = "en" }}{{ end -}}
+    {{- if not (in $seen $tLang) }}
+    <xhtml:link rel="alternate" hreflang="{{ $tLang }}" href="{{ .Permalink }}" />
+    {{- $seen = $seen | append $tLang -}}
+    {{- end -}}
+    {{- end -}}
+    {{- end }}
+  </url>
+  {{- end -}}
 {{- end }}
-</sitemapindex>
+</urlset>
