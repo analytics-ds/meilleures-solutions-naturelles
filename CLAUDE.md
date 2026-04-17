@@ -161,6 +161,53 @@ Page `/blog/` qui liste les articles par date decroissante. Hugo l inclut automa
 
 L article genere automatiquement son schema.org/Article via `seo-head.html` (date, auteur, headline, image).
 
+### 6. Le fichier llms.txt (referencement IA)
+
+Le fichier `static/llms.txt` a la racine du site liste toutes les URLs strategiques destinees aux LLMs (ChatGPT, Claude, Perplexity, etc.).
+
+**A chaque publication ou modification de contenu, ajouter la nouvelle URL dans la section appropriee du fichier `static/llms.txt`.**
+
+Structure attendue :
+
+```markdown
+# Nom du Site
+
+> Description courte et factuelle du site
+
+## A propos
+
+Description editoriale (methodologie, independance, auteurs experts, etc.)
+
+## Articles de reference (FR)
+
+- Titre de l'article 1 : https://domaine.com/blog/slug-1/
+- Titre de l'article 2 : https://domaine.com/blog/slug-2/
+- [a completer a chaque nouvel article]
+
+## Version anglaise (EN) — si multilingue
+
+- Homepage EN : https://domaine.com/en/
+- Blog EN : https://domaine.com/en/blog/
+- Title of article 1 : https://domaine.com/en/blog/slug-1/
+
+## Informations techniques
+
+- Generateur : Hugo (site statique)
+- Multilingue : francais (defaut) + anglais (si applicable)
+- Sitemap : https://domaine.com/sitemap.xml
+- RSS : https://domaine.com/index.xml
+- Schema.org : Organization, Article, BreadcrumbList, FAQPage, WebSite, CollectionPage, Person
+
+## Contact
+
+- URL : https://domaine.com/
+```
+
+Apres chaque nouvel article :
+1. Ouvrir `static/llms.txt`
+2. Ajouter la ligne `- Titre complet : URL absolue` dans la bonne section (FR ou EN)
+3. Commit + push
+
 ### Workflow post-publication
 
 ```bash
@@ -180,7 +227,10 @@ grep "<titre>" public/authors/<slug>/index.html
 # 5. Verifier le footer (plan-du-site doit etre present)
 grep "plan-du-site" public/index.html
 
-# 6. Commit + push
+# 6. Verifier llms.txt (mise a jour manuelle)
+grep "<titre>" static/llms.txt
+
+# 7. Commit + push
 git add -A && git commit -m "Article : <titre>" && git push origin main
 ```
 
