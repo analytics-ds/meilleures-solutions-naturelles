@@ -123,3 +123,43 @@ Cette limite sert a eviter la publication en masse et a maintenir un rythme de p
 - Pas de jargon technique sans explication
 - Reponses structurees avec listes a puces
 - Pas d'emoji sauf demande explicite
+
+
+## Regle importante : visibilite d'un nouvel article
+
+**A chaque fois qu'un article est mis en ligne, il DOIT etre visible :**
+
+1. **Dans le sitemap.xml** — Hugo l'inclut automatiquement via le layout `themes/<theme>/layouts/sitemap.xml`. Verifier apres chaque build :
+   - `https://<domaine>/sitemap.xml` → sitemapindex (FR + EN si multilingue)
+   - `https://<domaine>/fr/sitemap.xml` → liste FR des URLs
+   - `https://<domaine>/en/sitemap.xml` → liste EN (si site multilingue)
+
+2. **Dans le plan de site HTML** — page `/plan-du-site/` (FR) et `/en/site-map/` (EN). Rendue via `layouts/_default/sitemap-html.html` qui liste toutes les sections (Blog, Categories, Auteurs). Verifier que l'article apparait dans la section "Blog".
+
+3. **Sur la page auteur** — `/authors/<slug-auteur>/` (ex: `/authors/thomas-durand/`). La page liste automatiquement tous les articles dont le frontmatter contient `author: <slug>`. Verifier que le slug de l'auteur dans le frontmatter correspond a un auteur defini dans `data/authors.yaml`.
+
+4. **Dans la page liste du blog** — `/blog/` liste les articles par date decroissante. Hugo l'inclut automatiquement si le fichier est dans `content/blog/` (FR) ou `content/en/blog/` (EN).
+
+5. **Dans le JSON-LD** — l'article genere automatiquement son schema `Article` via `seo-head.html` (date, auteur, headline, etc.).
+
+**Workflow de verification post-publication :**
+
+```bash
+# 1. Build Hugo
+hugo
+
+# 2. Verifier que l'article est dans le sitemap
+grep "<nouveau-slug>" public/sitemap.xml public/fr/sitemap.xml
+
+# 3. Verifier que le plan de site HTML le contient
+grep "<nouveau-slug>" public/plan-du-site/index.html
+
+# 4. Verifier que la page auteur le liste
+grep "<titre>" public/authors/<slug-auteur>/index.html
+
+# 5. Commit + push
+git add -A && git commit -m "Article : <titre>" && git push origin main
+```
+
+Tout article nouvellement cree via `/create-article` doit etre verifie sur ces 5 emplacements avant la fin de la session.
+
