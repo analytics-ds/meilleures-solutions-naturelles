@@ -1,14 +1,34 @@
+# Meilleures Solutions Naturelles
+# https://meilleuresolutionnaturelle.fr
+# robots.txt - Derniere mise a jour : 2026-04-17
+
+# ==============================
+# Tous les robots
+# ==============================
 User-agent: *
 Allow: /
+Disallow:
 
-# Agents SEO classiques
+Allow: /blog/
+Allow: /categories/
+Allow: /plan-du-site/
+Allow: /assets/
+
+# ==============================
+# Googlebot
+# ==============================
 User-agent: Googlebot
 Allow: /
 
+# ==============================
+# Bingbot
+# ==============================
 User-agent: Bingbot
 Allow: /
 
-# Agents IA / GEO : autorises (le contenu est public et independant)
+# ==============================
+# Agents IA / LLMs (GEO)
+# ==============================
 User-agent: GPTBot
 Allow: /
 
@@ -42,4 +62,12 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# ==============================
+# Sitemap
+# ==============================
 Sitemap: https://meilleuresolutionnaturelle.fr/sitemap.xml
+
+# ==============================
+# llms.txt pour les LLMs
+# ==============================
+# https://meilleuresolutionnaturelle.fr/llms.txt
