@@ -1,14 +1,36 @@
 # Skill : Creer un article
 
-Ce skill genere un article de blog optimise SEO et GEO (Generative Engine Optimization) selon le type choisi.
+Ce skill genere un article de blog optimise SEO et GEO (Generative Engine Optimization) selon le type choisi. **Chaque article est systematiquement genere dans les deux langues du site (langue principale + anglais)**, jamais uniquement dans une seule langue.
 
 ## Declenchement
 
 L'utilisateur tape `/create-article` ou demande de creer/rediger un article.
 
-## Etape 0 — Verification du quota hebdomadaire
+## Bilinguisme automatique (FR + EN)
 
-Avant toute chose, lire le fichier `MEMORY.md` a la racine du projet. Ce fichier contient l'historique des articles publies, classe par semaine.
+Tous les blogs generes par ce template sont bilingues (langue principale + anglais en sous-dossier `/en/`). Chaque article cree est donc systematiquement produit dans les deux langues, en parallele :
+- Version langue principale : `content/blog/[slug-fr].md`
+- Version anglaise : `content/en/blog/[slug-en].md`
+
+Les deux versions partagent un `translationKey` identique dans le frontmatter, ce qui permet a Hugo de generer automatiquement les liens hreflang et le language switcher.
+
+Ne JAMAIS demander au consultant s'il veut la version anglaise. C'est systematique.
+
+## Etape 0 — Pull du repo (sync obligatoire)
+
+**Standard reseau PBN GEO datashake** : plusieurs consultants travaillent sur le meme repo. Avant toute modif, toujours synchroniser le local avec GitHub pour recuperer les changements des collegues.
+
+```bash
+git pull
+```
+
+Si le pull echoue (conflit de merge, divergence, etc.) : **STOP**. Ne pas tenter de resoudre automatiquement. Avertir l'utilisateur du probleme et lui demander de resoudre a la main avant de relancer `/create-article`.
+
+Si le repo n'a pas de remote configure (site encore en local, pas encore passe par `/github-setup`), passer cette etape et continuer.
+
+## Etape 0.5 — Verification du quota hebdomadaire
+
+Apres le pull, lire le fichier `MEMORY.md` a la racine du projet. Ce fichier contient l'historique des articles publies, classe par semaine.
 
 Compter le nombre d'articles publies dans la **semaine en cours** (lundi a dimanche). Si **4 articles ou plus** sont deja enregistres cette semaine :
 - Avertir l'utilisateur : "4 articles ont deja ete publies cette semaine. Pour une strategie de cocon semantique efficace, il est recommande d'etaler la publication. Tu veux quand meme continuer ?"
@@ -24,6 +46,8 @@ Demander a l'utilisateur :
 - **Prompt GEO cible** : la question exacte que les utilisateurs posent aux moteurs IA generatifs (ChatGPT, Perplexity, Google AI Overviews). Ce prompt deviendra le **H1 de l'article**. C'est une question naturelle, pas un mot-cle optimise. Exemple : "Quel anti-moustique naturel choisir ?"
 - **Query fan-out (mot-cle SEO)** : le terme SEO sur lequel l'article se positionne dans Google. Il decoule du prompt et represente la recherche "classique" associee. Exemple : "huile essentielle anti moustique". Si l'utilisateur ne fournit pas de query fan-out, la determiner a partir du prompt en choisissant un mot-cle avec du volume de recherche.
 - **Categorie** : dans quelle categorie du blog ? (proposer les categories existantes du site, definies dans hugo.toml ou visibles dans content/blog/). L'utilisateur DOIT choisir une categorie, ne pas passer cette etape.
+
+**Note multilingue** : le consultant fournit ces infos dans la langue principale du site. La query fan-out et le prompt seront automatiquement traduits en anglais par Claude au moment de la redaction de la version EN (avec recherche de mots-cles SEO pertinents en anglais, pas une simple traduction litterale).
 
 Si l'utilisateur ne fournit qu'un mot-cle sans prompt, l'aider a formuler le prompt GEO correspondant (transformer le mot-cle en question naturelle).
 
@@ -45,6 +69,112 @@ Si l'utilisateur ne sait pas quel type choisir, l'aider en analysant l'intention
 ### Informations complementaires selon le type
 
 - **GEO Comparatif (OBLIGATOIRE)** : l'utilisateur DOIT fournir la marque, le produit ou la solution a mettre en avant, ainsi que 2-3 concurrents a comparer. Ce type d'article sert a positionner favorablement un element par rapport aux autres dans un comparatif objectif. Ne jamais rediger sans cette information
+
+## Etape 1.3 — Selection automatique de l'auteur
+
+Chaque article est signe par un auteur pris dans `data/authors.yaml` (6 auteurs fictifs disponibles par defaut sur tous les sites generes par ce template). Le choix de l'auteur est **automatique** selon la pertinence thematique.
+
+### Algorithme de selection
+
+1. Lire `data/authors.yaml` (Hugo : `.Site.Data.authors`)
+2. Pour chaque auteur, comparer les champs `topics` et `expertise` avec :
+   - La query fan-out (mot-cle SEO)
+   - Le prompt GEO cible
+   - La categorie de l'article
+3. Calculer un score de correspondance (nombre de matches mot a mot ou semantiques)
+4. Selectionner l'auteur avec le score le plus eleve
+5. En cas d'egalite ou de score nul (sujet totalement hors des expertises existantes) : selectionner l'auteur principal du site defini dans le CLAUDE.md section "Contexte du site"
+
+### Exemples de matching
+
+| Sujet article | Auteur selectionne | Raison |
+|---------------|-------------------|--------|
+| "Meilleur CRM SaaS 2026" | thomas-durand | topic "saas", expertise "SaaS", "Outils de productivite" |
+| "Comment choisir son oreiller" | laura-verdier (sommeil) OU claire-beaumont | selon la categorie : sante/bien-etre → Laura, maison/literie → Claire |
+| "SCPI ou assurance vie" | sophie-martin | topics "scpi", "assurance vie" |
+| "Meilleure trottinette electrique" | kevin-moreau | topics "trottinette", "mobilite" |
+| "Parfums pour l'ete" | magalie-ergoz | expertise "Parfums" |
+| "Travaux renovation cuisine" | claire-beaumont | expertise "Renovation" |
+
+### Confirmation au consultant
+
+Apres selection, afficher au consultant :
+
+```
+Auteur selectionne automatiquement : [nom] ([ID])
+Raison : [liste des topics/expertises matches]
+
+Confirmer ? (oui par defaut / changer pour [liste des autres auteurs])
+```
+
+Le consultant peut override manuellement en indiquant un autre ID d'auteur. Si plusieurs auteurs ont des scores proches, les proposer en choix.
+
+### Injection dans le frontmatter
+
+Utiliser l'ID (slug) de l'auteur, pas son nom complet :
+
+```yaml
+author: thomas-durand
+```
+
+Hugo resoudra automatiquement les infos (nom, avatar, bio, role) depuis `data/authors.yaml` dans les templates (`seo-head.html` pour le JSON-LD, `single.html` pour le bloc auteur en bas d'article).
+
+**Meme auteur pour FR et EN** : les deux versions d'un article (FR + EN) utilisent le meme `author: [id]`. Les libelles (jobTitle, role, bio) sont automatiquement traduits via les champs bilingues de `data/authors.yaml`.
+
+## Etape 1.5 — Recuperation automatique de l'image hero
+
+Chaque article doit obligatoirement avoir une image hero (utilisee dans les cards du blog, la bannière de l'article, og:image et le schema Article JSON-LD). Le systeme recupere automatiquement une image libre de droit compatible usage commercial depuis l'API publique Openverse (federe Wikimedia, Flickr, etc.). Aucune cle API, aucune action manuelle du consultant.
+
+### Determiner la query image
+
+Par defaut, la query image = la **query fan-out** (mot-cle SEO) traduite en anglais, car les banques d'images sont majoritairement indexees en anglais et retournent plus de resultats pertinents.
+
+Exemples :
+- Query fan-out "huile essentielle anti moustique" → query image "anti mosquito essential oil"
+- Query fan-out "bienfaits the vert" → query image "green tea benefits" (ou simplement "green tea")
+- Query fan-out "bois de chauffage densite" → query image "firewood"
+
+Privilegier des queries courtes et visuelles (2-3 mots). Si la query fan-out est deja en anglais ou tres generique, la reutiliser telle quelle.
+
+### Appeler le script
+
+Le script `.claude/scripts/fetch-image.sh` gere toute la chaine : recherche Openverse, telechargement, conversion en WebP (si cwebp dispo), ecriture dans `static/images/blog/[slug].webp`.
+
+```bash
+bash .claude/scripts/fetch-image.sh "<query image en anglais>" "<slug-de-l-article>" "static/images/blog"
+```
+
+Le script affiche sur stdout 3 lignes :
+- Ligne 1 : chemin Hugo de l'image (ex: `/images/blog/mon-slug.webp`)
+- Ligne 2 : titre de l'image (a utiliser comme base pour `imageAlt`)
+- Ligne 3 : credit photo (ex: `Photo par John Doe via Wikimedia (CC BY-SA 3.0)`)
+
+### Injection dans le frontmatter
+
+Utiliser les 3 sorties pour remplir les champs suivants du frontmatter :
+
+```yaml
+image: "/images/blog/mon-slug.webp"
+imageAlt: "[Reformuler le titre retourne en un alt descriptif en francais, adapte au sujet de l'article]"
+imageCredit: "Photo par John Doe via Wikimedia (CC BY-SA 3.0)"
+```
+
+**Regles pour `imageAlt`** :
+- Reformuler en francais (le titre peut etre en anglais)
+- Descriptif du contenu visuel, pas du sujet de l'article
+- Max 125 caracteres
+- Integrer le mot-cle principal si c'est naturel
+
+### Fallback en cas d'echec
+
+Si le script renvoie un exit code non-zero (aucune image trouvee) :
+1. Proposer au consultant une query alternative (plus large, plus generique, categorie de l'article)
+2. Relancer le script avec la nouvelle query
+3. Si toujours echec apres 2 tentatives, demander au consultant de fournir manuellement une URL d'image ou continuer sans image (deconseille)
+
+### Verification visuelle
+
+Afficher au consultant le chemin de l'image telechargee et proposer de la visualiser (ex: `open static/images/blog/slug.webp`). Si l'image ne convient pas visuellement, reessayer avec une query differente.
 
 ## Etape 2 — Audit des contenus existants et maillage interne
 
@@ -71,6 +201,7 @@ Identifier **au minimum 3 articles existants** thematiquement proches du nouvel 
 - L'**ancre du lien** (le texte cliquable) doit contenir le **mot-cle principal de l'article cible**, pas de "cliquez ici" ou "lire aussi"
 - Les liens doivent etre **naturels et contextuels** : inseres dans une phrase qui a du sens, pas en liste en bas de page
 - Repartir les liens dans differentes sections de l'article (pas tous au meme endroit)
+- **Maillage intra-langue uniquement** : un article FR ne mail QUE vers des articles FR (`/blog/...`), un article EN ne mail QUE vers des articles EN (`/en/blog/...`). Jamais de maillage cross-langue dans le corps de l'article. Le language switcher du header gere le lien vers la traduction
 
 Exemple :
 - Si l'article cible s'appelle "Les bienfaits du the vert", l'ancre doit etre quelque chose comme : "Comme nous l'avons vu dans notre article sur les **[bienfaits du the vert](/blog/bienfaits-the-vert/)**, ..."
@@ -78,25 +209,40 @@ Exemple :
 
 Si le site a moins de 3 articles, faire le maximum avec ce qui existe. Si le site est vide (premier article), noter dans un commentaire les futurs liens a ajouter quand d'autres articles seront publies.
 
-## Etape 3 — Redaction
+## Etape 3 — Redaction bilingue (FR + EN)
 
-Lire le template correspondant dans `.claude/templates/articles/[type-choisi].md` et l'utiliser comme squelette.
+Lire le template correspondant dans `.claude/templates/articles/[type-choisi].md` et l'utiliser comme squelette **pour chaque langue**.
+
+### Production en deux passes
+
+1. **Passe 1 — Langue principale (ex: FR)** :
+   - Rediger l'article complet dans la langue principale selon les regles ci-dessous
+   - Fichier : `content/blog/[slug-fr].md`
+2. **Passe 2 — Anglais** :
+   - Traduire l'article en anglais avec un vocabulaire SEO approprie (pas une traduction litterale, mais une adaptation SEO : rechercher les mots-cles anglais pertinents pour le sujet)
+   - Adapter les exemples culturels si necessaire (ex: marques locales, references culturelles)
+   - Rediger la version EN dans le template, avec **le meme `translationKey`** que la version FR pour lier les deux
+   - Fichier : `content/en/blog/[slug-en].md`
 
 ### Frontmatter
 
+Les deux versions ont le meme schema de frontmatter, avec le champ `translationKey` identique.
+
 | Champ | Regle |
 |-------|-------|
-| `title` | **= prompt GEO cible** (la question naturelle posee aux moteurs IA). C'est le H1 de l'article. Max ~60 caracteres. Contient le mot-cle principal si possible, mais la formulation naturelle du prompt prime |
-| `description` | Meta description optimisee pour la SERP. Max 140 caracteres, contient la query fan-out (mot-cle SEO). Peut differer du title/H1 car elle est optimisee pour le clic Google |
-| `date` | Date du jour (YYYY-MM-DD) |
-| `lastmod` | Date du jour (YYYY-MM-DD), identique a `date` a la creation. Mettre a jour si l'article est modifie plus tard |
-| `categories` | La categorie choisie |
-| `tags` | 3-6 tags pertinents |
-| `author` | Nom de l'auteur (lire dans le CLAUDE.md section "Contexte du site" > auteur) |
-| `image` | Chemin vers l'image hero (optionnel, ex: `/images/blog/mon-article.jpg`). Utilisee dans le hero, og:image et le schema Article |
-| `imageAlt` | Texte alt de l'image (obligatoire si `image` est present) |
-| `faq` | Liste de questions/reponses pour le schema FAQPage JSON-LD (min. 3). Format YAML : `- question: "..." answer: "..."`. Les questions doivent correspondre a celles de la section FAQ dans le body |
-| Nom du fichier | Slug = query fan-out en minuscules, tirets, sans accents |
+| `translationKey` | **OBLIGATOIRE**. Identique entre FR et EN. Format : slug-article-generique (ex: `bienfaits-the-vert`). Ce champ permet a Hugo de lier les 2 versions et de generer le hreflang et le language switcher |
+| `title` | **= prompt GEO cible dans la langue de l'article** (FR : question naturelle en francais, EN : question naturelle en anglais). C'est le H1 de l'article. Max ~60 caracteres. Contient le mot-cle principal de la langue si possible |
+| `description` | Meta description optimisee pour la SERP dans la langue de l'article. Max 140 caracteres, contient la query fan-out de la langue |
+| `date` | Date du jour (YYYY-MM-DD). Identique entre FR et EN |
+| `lastmod` | Date du jour (YYYY-MM-DD), identique a `date` a la creation |
+| `categories` | La categorie choisie, **dans la langue de l'article** (FR : "Thes verts", EN : "Green teas"). Le mapping FR↔EN est documente dans le CLAUDE.md du site |
+| `tags` | 3-6 tags pertinents, **dans la langue de l'article** (traduits en EN) |
+| `author` | **ID-slug de l'auteur** (ex: `thomas-durand`), cle de `data/authors.yaml`. Selectionne automatiquement a l'etape 1.3 selon la pertinence thematique. Meme ID pour les 2 versions FR et EN (les libelles jobTitle/role/bio sont automatiquement bilingues via le YAML) |
+| `image` | Chemin vers l'image hero (OBLIGATOIRE, rempli automatiquement a l'etape 1.5 par `fetch-image.sh`). **Meme image pour FR et EN** (on ne double pas le telechargement) |
+| `imageAlt` | Texte alt de l'image (OBLIGATOIRE). **Traduit dans la langue de l'article** (FR : en francais, EN : en anglais). Max 125 caracteres |
+| `imageCredit` | Credit photo (OBLIGATOIRE, rempli automatiquement). Meme credit dans les 2 langues |
+| `faq` | Liste de questions/reponses pour le schema FAQPage JSON-LD (min. 3). **Traduites dans la langue de l'article**. Les questions doivent correspondre a celles de la section FAQ dans le body |
+| Nom du fichier | Slug = query fan-out en minuscules, tirets, sans accents, **dans la langue de l'article** (FR : `bienfaits-the-vert.md`, EN : `green-tea-benefits.md`) |
 
 ### Regles GEO (Generative Engine Optimization)
 
@@ -136,12 +282,14 @@ Lire les commentaires HTML `<!-- NOTES POUR CLAUDE -->` en bas du template chois
 
 **Toujours suivre ces notes.** Elles priment sur les regles communes si conflit.
 
-## Etape 4 — Verification (checklist)
+## Etape 4 — Verification (checklist) — a appliquer aux DEUX versions FR + EN
 
-- [ ] Slug = query fan-out en minuscules, tirets, sans accents
-- [ ] Title = prompt GEO cible (question naturelle), < 60 caracteres
-- [ ] Meta description <= 140 caracteres, contient la query fan-out (mot-cle SEO)
-- [ ] Auteur renseigne dans le frontmatter
+- [ ] Les 2 versions sont creees (FR dans `content/blog/`, EN dans `content/en/blog/`)
+- [ ] Les 2 versions partagent le meme `translationKey` dans le frontmatter
+- [ ] Slug = query fan-out en minuscules, tirets, sans accents, dans la langue de l'article
+- [ ] Title = prompt GEO cible (question naturelle dans la langue de l'article), < 60 caracteres
+- [ ] Meta description <= 140 caracteres, contient la query fan-out (mot-cle SEO dans la langue)
+- [ ] Auteur renseigne dans le frontmatter (ID slug correspondant a une cle de `data/authors.yaml`, meme ID pour FR et EN)
 - [ ] H1 = prompt cible (verifie que c'est bien une question naturelle, pas un mot-cle)
 - [ ] Query fan-out presente dans le premier paragraphe
 - [ ] Structure Hn conforme au type (voir notes du template)
@@ -159,7 +307,8 @@ Lire les commentaires HTML `<!-- NOTES POUR CLAUDE -->` en bas du template chois
 - [ ] FAQ presente avec balises `<details>/<summary>` (accordeon) dans le body
 - [ ] FAQ presente dans le frontmatter (champ `faq`, min. 3 questions) pour le schema FAQPage JSON-LD
 - [ ] Les questions FAQ du frontmatter et du body correspondent
-- [ ] `image` et `imageAlt` renseignes si une image est disponible
+- [ ] `image`, `imageAlt` et `imageCredit` renseignes (auto via `fetch-image.sh`)
+- [ ] Fichier image present dans `static/images/blog/[slug].webp`
 - [ ] Pas de separateur horizontal (---) ni de tiret cadratin/demi-cadratin
 - [ ] Build Hugo OK (`hugo`)
 
@@ -171,11 +320,12 @@ hugo
 
 Afficher a l'utilisateur :
 - Type d'article utilise
-- Prompt GEO (H1)
-- Query fan-out (mot-cle SEO)
-- Nombre de mots
-- Nombre de H2
-- Liens internes ajoutes
+- Prompt GEO (H1) dans les 2 langues
+- Query fan-out (mot-cle SEO) dans les 2 langues
+- Nombre de mots par langue
+- Nombre de H2 (identique dans les 2 langues)
+- Liens internes ajoutes (en preciser la langue)
+- URLs des 2 versions (FR : `/blog/slug-fr/`, EN : `/en/blog/slug-en/`)
 - Proposer de voir le resultat en local (`hugo server`)
 
 ## Etape 6 — Enregistrement dans MEMORY.md
@@ -187,29 +337,33 @@ Format du fichier :
 ```markdown
 # Journal de publication
 
-## Semaine 15 (06/04/2026 - 12/04/2026)
-- 2026-04-07 | Titre de l'article | Categorie
+## Semaine 16 (13/04/2026 - 19/04/2026)
+- 2026-04-17 | Titre de l'article (FR+EN) | Categorie
 
-## Semaine 14 (30/03/2026 - 05/04/2026)
-- 2026-04-01 | Mon premier article | Thes verts
-- 2026-04-03 | Autre article | Tisanes
+## Semaine 15 (06/04/2026 - 12/04/2026)
+- 2026-04-07 | Titre de l'article (FR+EN) | Categorie
 ```
 
 Regles :
 - Utiliser le numero de semaine ISO et les dates lundi-dimanche
 - Creer une nouvelle section de semaine si elle n'existe pas encore
 - Les semaines les plus recentes en haut du fichier
-- Une ligne par article : date | titre | categorie
+- Une ligne par article : date | titre (FR+EN) | categorie
+- **1 article = 1 ligne, meme si 2 versions linguistiques** (les 2 versions comptent comme 1 article pour le quota de 4/semaine)
 
-## Etape 7 — Push sur GitHub
+## Etape 7 — Push sur GitHub (direct sur main)
 
-Si un remote git est configure (le site a ete mis en ligne via `/github-setup`), commit et push automatiquement :
+Si un remote git est configure (le site a ete mis en ligne via `/github-setup`), commit et push automatiquement sur `main` :
 
 ```bash
 git add -A
 git commit -m "Ajout article : [titre de l'article]"
-git push
+git push origin main
 ```
+
+**Standard reseau PBN GEO datashake** : on push toujours direct sur `main`, jamais sur une branche annexe. GitHub Actions deploie automatiquement.
+
+Si le push est rejete (quelqu'un a push entre-temps) : faire un `git pull --rebase` puis retenter le push. Si conflit : **STOP** et avertir l'utilisateur.
 
 Informer l'utilisateur que l'article sera en ligne dans 1-2 minutes (deploiement automatique via GitHub Actions).
 

@@ -21,6 +21,16 @@ git remote -v
 
 Si pas de remote, rediriger l'utilisateur vers `/github-setup`.
 
+## Etape 1.5 : Pull avant deploiement (sync obligatoire)
+
+**Standard reseau PBN GEO datashake** : plusieurs consultants travaillent sur le meme repo. Avant de push, toujours pull pour recuperer les changements des collegues et eviter les conflits.
+
+```bash
+git pull --rebase origin main
+```
+
+Si le pull echoue (conflit de merge, divergence) : **STOP**. Ne pas tenter de resoudre automatiquement. Avertir l'utilisateur et lui demander de resoudre a la main avant de relancer `/github-deploy`.
+
 ## Etape 2 : Build de verification
 
 ```bash
@@ -44,8 +54,10 @@ Afficher les fichiers modifies a l'utilisateur. Creer un commit avec un message 
 
 ```bash
 git commit -m "[message]"
-git push
+git push origin main
 ```
+
+**Standard reseau PBN GEO datashake** : on push toujours direct sur `main`. Jamais de branche annexe ni de PR.
 
 ## Etape 4 : Suivi du deploiement
 
