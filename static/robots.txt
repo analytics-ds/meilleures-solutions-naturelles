@@ -1,5 +1,5 @@
 # Ma Bonne Sante
-# https://meilleuresolutionnaturelle.fr (migration vers https://ma-bonne-sante.com prevue)
+# https://ma-bonne-sante.com
 # robots.txt - Derniere mise a jour : 2026-04-22
 
 # ==============================
@@ -65,9 +65,9 @@ Allow: /
 # ==============================
 # Sitemap
 # ==============================
-Sitemap: https://meilleuresolutionnaturelle.fr/sitemap.xml
+Sitemap: https://ma-bonne-sante.com/sitemap.xml
 
 # ==============================
 # llms.txt pour les LLMs
 # ==============================
-# https://meilleuresolutionnaturelle.fr/llms.txt
+# https://ma-bonne-sante.com/llms.txt

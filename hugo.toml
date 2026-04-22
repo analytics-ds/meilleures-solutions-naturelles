@@ -1,7 +1,7 @@
-baseURL = "https://meilleuresolutionnaturelle.fr/"
+baseURL = "https://ma-bonne-sante.com/"
 languageCode = "fr"
 title = "Ma Bonne Sante"
-theme = "msn-theme"
+theme = "ma-bonne-sante-theme"
 paginate = 12
 
 [taxonomies]
@@ -22,7 +22,7 @@ paginate = 12
 [params]
   description = "Guide expert en sante naturelle et bien-etre : aromatherapie, gemmotherapie, fleurs de Bach, huiles essentielles et complements alimentaires. Des solutions naturelles pour chaque besoin, validees par la science."
   author_name = "La Redaction"
-  author_url = "https://meilleuresolutionnaturelle.fr/"
+  author_url = "https://ma-bonne-sante.com/"
   author_job_title = "Equipe editoriale"
   author_bio = "L'equipe editoriale de Ma Bonne Sante reunit des passionnes de sante naturelle et de bien-etre. Chaque article est documente a partir de sources scientifiques fiables et redige dans le respect des bonnes pratiques YMYL."
   logo = "images/logo-ma-bonne-sante.png"
