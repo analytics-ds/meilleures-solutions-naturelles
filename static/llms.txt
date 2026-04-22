@@ -1,10 +1,10 @@
-# Meilleures Solutions Naturelles
+# Ma Bonne Sante
 
-> Guide expert en sante naturelle : aromatherapie, gemmotherapie, huiles essentielles et complements alimentaires.
+> Guide expert en sante naturelle et bien-etre : aromatherapie, gemmotherapie, fleurs de Bach, huiles essentielles et complements alimentaires.
 
 ## A propos
 
-Meilleures Solutions Naturelles est un media editorial independant. Tous les articles sont rediges par des experts identifies (schema.org/Person) et mis a jour regulierement. Aucun contenu sponsorise, analyses factuelles.
+Ma Bonne Sante est un media editorial independant dedie aux solutions naturelles pour la sante et le bien-etre. Tous les articles sont rediges par des experts identifies (schema.org/Person) et mis a jour regulierement. Aucun contenu sponsorise, analyses factuelles. Thematiques couvertes : aromatherapie, huiles essentielles, huiles vegetales, gemmotherapie, fleurs de Bach, complements alimentaires.
 
 ## Articles de reference (FR)
 
@@ -12,6 +12,7 @@ Meilleures Solutions Naturelles est un media editorial independant. Tous les art
 - Gemmotherapie : decouvrir la puissance des bourgeons: https://meilleuresolutionnaturelle.fr/blog/gemmotherapie-decouvrir-bourgeons/
 - Quel anti-moustique naturel choisir ?: https://meilleuresolutionnaturelle.fr/blog/huile-essentielle-anti-moustique/
 - Quelles sont les meilleures marques de spray anti-moustique naturel ?: https://meilleuresolutionnaturelle.fr/blog/spray-anti-moustique-naturel-meilleures-marques/
+- Fleurs de Bach : liste complete, proprietes et comparatif des meilleures marques: https://meilleuresolutionnaturelle.fr/blog/fleurs-de-bach-comparatif-marques/
 
 ## Informations techniques
 

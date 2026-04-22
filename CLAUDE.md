@@ -71,17 +71,19 @@ Ce repo ne contient pas de site. Il contient les **instructions et templates** p
 > Cette section est remplie automatiquement par le skill `/create-site`.
 > Elle permet a Claude de connaitre le contexte du site pour les futures actions.
 
-- **Nom du site** : Meilleures Solutions Naturelles
-- **Description** : Guide expert en sante naturelle : aromatherapie, gemmotherapie, huiles essentielles et complements alimentaires. Des solutions naturelles pour chaque besoin, validees par la science.
-- **URL** : https://meilleuresolutionnaturelle.fr/
+- **Nom du site** : Ma Bonne Sante (anciennement "Meilleures Solutions Naturelles")
+- **Description** : Guide expert en sante naturelle et bien-etre : aromatherapie, gemmotherapie, fleurs de Bach, huiles essentielles et complements alimentaires. Des solutions naturelles pour chaque besoin, validees par la science.
+- **URL actuelle** : https://meilleuresolutionnaturelle.fr/ (migration prevue vers https://ma-bonne-sante.com/ quand le DNS sera configure)
 - **Couleurs** : Primary #3B7A4A, Primary light #4A8F5B, Primary dark #2E6439, Background #FAFAF6, Background alt #F2F0EA, Accent #6B8F3B, Text #2C2C2C, Border #DDD9D0
 - **Polices** : Playfair Display (titres), Lora (corps), DM Sans (UI)
-- **Categories domaines** : Aromatherapie, Huiles Essentielles, Huiles Vegetales, Gemmotherapie, Complements Alimentaires
-- **Categories besoins** : Immunite et Defenses naturelles, Sommeil et Detente, Douleurs et Articulations, Bien-etre Feminin, Digestion et Detox, Minceur et Drainage, Beaute et Soins, Stress et Equilibre emotionnel, Respiration et Voies respiratoires
+- **Categories domaines (modalites therapeutiques)** : Aromatherapie, Huiles Essentielles, Huiles Vegetales, Gemmotherapie, Fleurs de Bach, Complements Alimentaires
+- **Categories besoins (usages sante et bien-etre)** : Immunite et Defenses, Sommeil et Detente, Douleurs et Articulations, Bien-etre Feminin, Digestion et Detox, Minceur et Drainage, Beaute et Soins, Stress et Equilibre emotionnel, Peurs et Angoisses, Confiance et Estime de Soi, Respiration, Nuisibles
 - **Langue** : FR (EN prevu en sous-dossier)
 - **Auteur** : La Redaction
 - **URL auteur** : https://meilleuresolutionnaturelle.fr/
 - **Fonction auteur** : Equipe editoriale
+- **Client principal** : Inula (Pranarom, HerbalGem, Biofloral). Blog pense pour publier du contenu editorial valorisant les produits des 3 marques du groupe. D'autres clients datashake peuvent publier sur ce site si leur thematique rentre dans le champ sante naturelle ou bien-etre.
+- **Historique** : site initialement lance sous le nom "Meilleures Solutions Naturelles" (domaine meilleuresolutionnaturelle.fr). Renomme en "Ma Bonne Sante" en avril 2026 avec elargissement de la thematique aux fleurs de Bach et a l'equilibre emotionnel. Le repo GitHub conserve le nom historique "meilleures-solutions-naturelles" par simplicite, mais toute communication utilisateur doit utiliser "Ma Bonne Sante".
 
 ## Suivi des publications (MEMORY.md)
 

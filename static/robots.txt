@@ -1,6 +1,6 @@
-# Meilleures Solutions Naturelles
-# https://meilleuresolutionnaturelle.fr
-# robots.txt - Derniere mise a jour : 2026-04-17
+# Ma Bonne Sante
+# https://meilleuresolutionnaturelle.fr (migration vers https://ma-bonne-sante.com prevue)
+# robots.txt - Derniere mise a jour : 2026-04-22
 
 # ==============================
 # Tous les robots
