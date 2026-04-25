@@ -3,7 +3,7 @@ title: "Huile essentielle pour le stress et l'anxiete : 6 alliees"
 translationKey: "essential-oil-stress-anxiety"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-04-28
+publishDate: 2026-04-25
 description: "Decouvrez les 6 huiles essentielles les plus efficaces contre le stress et l'anxiete : lavande, camomille romaine, ylang-ylang. Synergies et precautions."
 categories: ["Stress et Équilibre émotionnel"]
 tags: ["huile essentielle", "stress", "anxiete", "lavande vraie", "camomille romaine"]
