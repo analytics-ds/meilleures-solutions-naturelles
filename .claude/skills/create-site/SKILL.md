@@ -273,4 +273,4 @@ Afficher a l'utilisateur :
 - Le resume de ce qui a ete cree (nombre de fichiers, articles, categories)
 - L'URL locale pour voir le site (`http://localhost:1313/`)
 - Les prochaines etapes (push sur GitHub, activer GitHub Pages)
-- Comment creer de nouveaux articles (`/create-article`)
+- Comment creer de nouveaux articles (`/create-article-geo`)

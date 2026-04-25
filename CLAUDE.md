@@ -16,8 +16,8 @@ Ce repo ne contient pas de site. Il contient les **instructions et templates** p
 
 ### Utilisation courante
 
-- `/create-article` : creer un nouvel article de blog (choix parmi plusieurs types : article standard, comparatif). Push automatiquement sur GitHub si le repo est configure
-- `/create-article-evergreen` : **production polyvalente locale** d'articles evergreen SEO bilingues FR+EN. Tourne sur le Mac de Damien avec Opus 4.7 (analyse SERP avec fetch concurrents reel, maillage cross-batch). 3 modes au choix : (A) suivre la roadmap.yaml du blog, (B) roadmap externe fournie, (C) KW a la demande dans le chat. 3 strategies de scheduling au choix : garder dates source / cascade depuis date X / prochain slot dispo. Articles ecrits avec `publishDate` futur ou today selon mode. Voir section "Publications evergreen automatiques" plus bas
+- `/create-article-geo` : creer un nouvel article de blog (choix parmi plusieurs types : article standard, comparatif). Push automatiquement sur GitHub si le repo est configure
+- `/create-article-seo` : **production polyvalente locale** d'articles evergreen SEO bilingues FR+EN. Tourne sur le Mac de Damien avec Opus 4.7 (analyse SERP avec fetch concurrents reel, maillage cross-batch). 3 modes au choix : (A) suivre la roadmap.yaml du blog, (B) roadmap externe fournie, (C) KW a la demande dans le chat. 3 strategies de scheduling au choix : garder dates source / cascade depuis date X / prochain slot dispo. Articles ecrits avec `publishDate` futur ou today selon mode. Voir section "Publications evergreen automatiques" plus bas
 - `/seo-setup` : generer ou mettre a jour les fichiers SEO techniques de base (robots.txt, llms.txt, sitemap, structured data)
 - `/seo` : mode interactif pour modifier/ajouter des elements SEO (meta tags, JSON-LD, audit on-page, etc.)
 - `/serve` : lancer le serveur Hugo en local (previsualisation sur `http://localhost:1313/`)
@@ -31,7 +31,7 @@ Ce repo ne contient pas de site. Il contient les **instructions et templates** p
 .claude/
 ├── skills/
 │   ├── create-site.md           ← Workflow creation de site complet
-│   ├── create-article.md        ← Workflow creation d'article (multi-types)
+│   ├── create-article-geo.md        ← Workflow creation d'article (multi-types)
 │   ├── seo-setup.md             ← Workflow fichiers SEO techniques (baseline)
 │   ├── seo.md                   ← Mode interactif SEO (modifications ponctuelles)
 │   ├── serve.md                 ← Lancer le serveur Hugo en local
@@ -86,7 +86,7 @@ Ce repo ne contient pas de site. Il contient les **instructions et templates** p
 
 ## Suivi des publications (MEMORY.md)
 
-Le fichier `MEMORY.md` a la racine trace tous les articles publies, classes par semaine. Il est mis a jour automatiquement par `/create-article`.
+Le fichier `MEMORY.md` a la racine trace tous les articles publies, classes par semaine. Il est mis a jour automatiquement par `/create-article-geo`.
 
 **Limite de publication : 4 articles par semaine maximum.** Avant chaque creation d'article, le systeme verifie le quota. Si 4 articles sont deja publies dans la semaine en cours, l'utilisateur est averti.
 
@@ -103,7 +103,7 @@ Cette limite sert a eviter la publication en masse et a maintenir un rythme de p
 - Chaque article doit contenir au minimum 3 liens internes contextuels vers d'autres articles du blog. L'ancre de chaque lien doit contenir le mot-cle principal de l'article cible
 - L'auteur est ajoute automatiquement dans le frontmatter et affiche sur la page (configure dans `hugo.toml [params]`)
 - Les templates SEO dans `.claude/templates/seo/` sont editables par l'utilisateur — toujours lire la version en place avant de generer
-- Pour ajouter un nouveau type d'article, creer un `.md` dans `.claude/templates/articles/` — il sera automatiquement propose par `/create-article`
+- Pour ajouter un nouveau type d'article, creer un `.md` dans `.claude/templates/articles/` — il sera automatiquement propose par `/create-article-geo`
 - Pour ajouter un schema JSON-LD, creer un `.json` dans `.claude/templates/seo/structured-data/` et utiliser `/seo` pour l'integrer
 - Chaque article doit avoir un champ `lastmod` dans le frontmatter (= date de derniere modification). Il est utilise par le sitemap XML, le sitemap HTML et le schema JSON-LD
 - Quand un article est modifie, toujours mettre a jour le champ `lastmod` avec la date du jour
@@ -239,11 +239,11 @@ git add -A && git commit -m "Article : <titre>" && git push origin main
 
 ## Publications evergreen automatiques (methode 2 : batch + GitHub Actions cron)
 
-Ce blog utilise la **methode 2** du systeme PBN GEO datashake (par opposition a la methode 1 utilisee sur como-blog-ai qui repose sur des routines CCR cloud). Voir spec master `geo-pbn-create-article-evergreen` dans 000 Data.
+Ce blog utilise la **methode 2** du systeme PBN GEO datashake (par opposition a la methode 1 utilisee sur como-blog-ai qui repose sur des routines CCR cloud). Voir spec master `geo-pbn-create-article-seo` dans 000 Data.
 
 ### Principe
 
-- **Production locale polyvalente** : Damien lance `/create-article-evergreen` sur son Mac (Opus 4.7, sans limite Stream idle timeout). La skill propose 3 modes au debut :
+- **Production locale polyvalente** : Damien lance `/create-article-seo` sur son Mac (Opus 4.7, sans limite Stream idle timeout). La skill propose 3 modes au debut :
   - **(A) Roadmap du blog** : N premieres entrees `todo` triees par scheduled_date (cas batch mensuel)
   - **(B) Roadmap externe** : roadmap fournie par l'utilisateur (Sheet d'un consultant, KW d'un client)
   - **(C) KW a la demande** : 1 ou plusieurs KW fournis dans le chat (ponctuel)
@@ -271,7 +271,7 @@ Fichier : `roadmap.yaml` a la racine du repo (40 entrees au 25/04/2026, source H
 ### Cycle complet de publication d'un article (timeline type)
 
 1. Damien renseigne le KW dans la roadmap (`status: todo`, scheduled_date dans le futur)
-2. 1x/mois, Damien lance `/create-article-evergreen` -> N articles redings avec `publishDate` futur, status passe a `queued`
+2. 1x/mois, Damien lance `/create-article-seo` -> N articles redings avec `publishDate` futur, status passe a `queued`
 3. Damien relit les articles, push sur GitHub
 4. Sur push, GitHub Actions rebuild le site (mais les nouveaux articles restent invisibles, publishDate futur)
 5. Mardi/vendredi 3h Paris, GitHub Actions cron rebuild le site -> les articles dont publishDate <= today apparaissent automatiquement
@@ -287,7 +287,7 @@ Fichier : `roadmap.yaml` a la racine du repo (40 entrees au 25/04/2026, source H
 
 | Aspect | como-blog-ai (methode 1) | ma-bonne-sante (methode 2) |
 |---|---|---|
-| Skill principale | `/create-article-auto` (CCR cloud) | `/create-article-evergreen` (local) |
+| Skill principale | `/create-article-auto` (CCR cloud) | `/create-article-seo` (local) |
 | Frequence run | 2x/sem auto | 1x/mois manuel |
 | Modele | Sonnet 4.6 (force, bug Opus stream timeout) | Opus 4.7 |
 | Fetch concurrents | Bloque par sandbox cloud | Marche normalement |

@@ -128,5 +128,5 @@ Afficher :
 - URL du repo GitHub
 - URL du site en ligne
 - Rappeler que chaque push sur `main` declenche un deploiement automatique
-- Rappeler que `/create-article` push automatiquement apres la creation d'un article
+- Rappeler que `/create-article-geo` push automatiquement apres la creation d'un article
 - Rappeler que `/github-deploy` permet de push manuellement a tout moment

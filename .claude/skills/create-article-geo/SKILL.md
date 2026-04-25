@@ -4,7 +4,7 @@ Ce skill genere un article de blog optimise SEO et GEO (Generative Engine Optimi
 
 ## Declenchement
 
-L'utilisateur tape `/create-article` ou demande de creer/rediger un article.
+L'utilisateur tape `/create-article-geo` ou demande de creer/rediger un article.
 
 ## Bilinguisme automatique (FR + EN)
 
@@ -24,7 +24,7 @@ Ne JAMAIS demander au consultant s'il veut la version anglaise. C'est systematiq
 git pull
 ```
 
-Si le pull echoue (conflit de merge, divergence, etc.) : **STOP**. Ne pas tenter de resoudre automatiquement. Avertir l'utilisateur du probleme et lui demander de resoudre a la main avant de relancer `/create-article`.
+Si le pull echoue (conflit de merge, divergence, etc.) : **STOP**. Ne pas tenter de resoudre automatiquement. Avertir l'utilisateur du probleme et lui demander de resoudre a la main avant de relancer `/create-article-geo`.
 
 Si le repo n'a pas de remote configure (site encore en local, pas encore passe par `/github-setup`), passer cette etape et continuer.
 

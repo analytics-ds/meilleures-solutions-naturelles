@@ -369,7 +369,7 @@ Pas de statut `done` en methode 2 : la publication est implicite via `publishDat
 
 ## Differences avec /create-article-auto (CCR cloud)
 
-| Element | `/create-article-auto` (CCR) | `/create-article-evergreen` (local) |
+| Element | `/create-article-auto` (CCR) | `/create-article-seo` (local) |
 |---|---|---|
 | Localisation | Cloud Anthropic CCR | Mac local |
 | Modele | Sonnet 4.6 (force, bug Opus stream) | Opus 4.7 |

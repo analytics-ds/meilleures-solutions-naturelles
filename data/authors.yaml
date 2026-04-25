@@ -5,7 +5,7 @@
 # Structure : map d'auteurs indexee par ID (slug)
 # L'ID est utilise dans le frontmatter des articles comme `author: thomas-durand`
 #
-# Le champ `topics` sert a la selection automatique de l'auteur dans /create-article.
+# Le champ `topics` sert a la selection automatique de l'auteur dans /create-article-geo.
 # Le champ `expertise` alimente le schema.org Person -> knowsAbout.
 
 thomas-durand:
