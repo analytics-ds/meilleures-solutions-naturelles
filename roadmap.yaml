@@ -30,7 +30,7 @@ articles:
     category: "Sommeil et Detente"
     volume: 300
     kd: null
-    scheduled_date: "2026-05-01"
+    scheduled_date: "2026-04-28"
     status: queued
     queued_date: "2026-04-25"
     published_date: null
@@ -43,7 +43,7 @@ articles:
     category: "Respiration"
     volume: 210
     kd: null
-    scheduled_date: "2026-05-05"
+    scheduled_date: "2026-05-01"
     status: queued
     queued_date: "2026-04-25"
     published_date: null
@@ -55,7 +55,7 @@ articles:
     category: "Gemmotherapie"
     volume: 800
     kd: null
-    scheduled_date: "2026-05-08"
+    scheduled_date: "2026-05-05"
     status: queued
     queued_date: "2026-04-25"
     published_date: null
@@ -68,7 +68,7 @@ articles:
     category: "Immunite et Defenses"
     volume: null
     kd: null
-    scheduled_date: "2026-05-12"
+    scheduled_date: "2026-05-08"
     status: queued
     queued_date: "2026-04-25"
     published_date: null

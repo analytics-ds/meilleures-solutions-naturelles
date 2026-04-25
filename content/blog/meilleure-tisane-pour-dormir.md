@@ -3,7 +3,7 @@ title: "Quelle est la meilleure tisane pour dormir : 7 plantes"
 translationKey: "best-tea-for-sleep"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-01
+publishDate: 2026-04-28
 description: "Camomille, tilleul, valeriane, passiflore : decouvrez les 7 meilleures tisanes pour dormir, leurs dosages precis et les melanges qui fonctionnent vraiment."
 categories: ["Sommeil et Détente"]
 tags: ["tisane", "sommeil", "camomille", "valeriane", "passiflore"]

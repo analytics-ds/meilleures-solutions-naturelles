@@ -3,7 +3,7 @@ title: "Fig bud: uses, benefits, and dosage in gemmotherapy"
 translationKey: "fig-bud-uses-benefits"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-08
+publishDate: 2026-05-05
 description: "Fig bud: digestive and nervous indications, drop dosage, contraindications. The complete guide to the great bud of the gastric sphere."
 categories: ["Gemmotherapy"]
 tags: ["fig bud", "gemmotherapy", "stress", "digestion", "sleep"]

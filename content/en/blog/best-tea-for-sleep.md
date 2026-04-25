@@ -3,7 +3,7 @@ title: "What is the best tea for sleep: 7 plants compared"
 translationKey: "best-tea-for-sleep"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-01
+publishDate: 2026-04-28
 description: "Chamomile, linden, valerian, passionflower: discover the 7 best teas for sleep, their precise dosages, and the blends that really work."
 categories: ["Sleep and Relaxation"]
 tags: ["herbal tea", "sleep", "chamomile", "valerian", "passionflower"]

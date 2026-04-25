@@ -3,7 +3,7 @@ title: "Comment renforcer son systeme immunitaire naturellement"
 translationKey: "strengthen-immune-system-naturally"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-12
+publishDate: 2026-05-08
 description: "Renforcer son systeme immunitaire naturellement : alimentation, vitamines C et D, sommeil, sport, plantes (echinacee, propolis). Le guide complet."
 categories: ["Immunité et Défenses"]
 tags: ["systeme immunitaire", "immunite", "vitamine C", "vitamine D", "echinacee"]

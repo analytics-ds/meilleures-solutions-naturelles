@@ -3,7 +3,7 @@ title: "Bourgeon de figuier : utilisation, bienfaits et posologie"
 translationKey: "fig-bud-uses-benefits"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-08
+publishDate: 2026-05-05
 description: "Bourgeon de figuier : indications digestives et nerveuses, posologie en gouttes, contre-indications. Le guide complet du grand bourgeon de la sphere gastrique."
 categories: ["Gemmothérapie"]
 tags: ["bourgeon de figuier", "gemmotherapie", "stress", "digestion", "sommeil"]

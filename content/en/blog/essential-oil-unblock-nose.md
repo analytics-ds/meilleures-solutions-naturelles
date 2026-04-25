@@ -3,7 +3,7 @@ title: "Essential oil to unblock the nose: 5 most effective"
 translationKey: "essential-oil-unblock-nose"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-05
+publishDate: 2026-05-01
 description: "Which essential oil to unblock the nose? Peppermint, radiata eucalyptus, ravintsara: discover the 5 most effective and the inhalation method."
 categories: ["Respiratory"]
 tags: ["essential oil", "blocked nose", "peppermint", "eucalyptus radiata", "inhalation"]

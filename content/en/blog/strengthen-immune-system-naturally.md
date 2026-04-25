@@ -3,7 +3,7 @@ title: "How to strengthen your immune system naturally"
 translationKey: "strengthen-immune-system-naturally"
 date: 2026-04-25
 lastmod: 2026-04-25
-publishDate: 2026-05-12
+publishDate: 2026-05-08
 description: "Strengthen your immune system naturally: nutrition, vitamins C and D, sleep, exercise, plants (echinacea, propolis). The complete guide."
 categories: ["Immunity and Defenses"]
 tags: ["immune system", "immunity", "vitamin C", "vitamin D", "echinacea"]
