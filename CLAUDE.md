@@ -17,7 +17,7 @@ Ce repo ne contient pas de site. Il contient les **instructions et templates** p
 ### Utilisation courante
 
 - `/create-article` : creer un nouvel article de blog (choix parmi plusieurs types : article standard, comparatif). Push automatiquement sur GitHub si le repo est configure
-- `/create-articles-batch` : **production en batch local** d'articles evergreen SEO bilingues FR+EN depuis la roadmap. Tourne sur le Mac de Damien avec Opus 4.7 (analyse SERP avec fetch concurrents reel, maillage cross-batch). Pose 2 questions au debut (source roadmap + nombre d'articles), puis tourne en autonomie. Articles ecrits avec `publishDate` futur. Voir section "Publications evergreen automatiques" plus bas
+- `/create-article-evergreen` : **production polyvalente locale** d'articles evergreen SEO bilingues FR+EN. Tourne sur le Mac de Damien avec Opus 4.7 (analyse SERP avec fetch concurrents reel, maillage cross-batch). 3 modes au choix : (A) suivre la roadmap.yaml du blog, (B) roadmap externe fournie, (C) KW a la demande dans le chat. 3 strategies de scheduling au choix : garder dates source / cascade depuis date X / prochain slot dispo. Articles ecrits avec `publishDate` futur ou today selon mode. Voir section "Publications evergreen automatiques" plus bas
 - `/seo-setup` : generer ou mettre a jour les fichiers SEO techniques de base (robots.txt, llms.txt, sitemap, structured data)
 - `/seo` : mode interactif pour modifier/ajouter des elements SEO (meta tags, JSON-LD, audit on-page, etc.)
 - `/serve` : lancer le serveur Hugo en local (previsualisation sur `http://localhost:1313/`)
@@ -239,12 +239,22 @@ git add -A && git commit -m "Article : <titre>" && git push origin main
 
 ## Publications evergreen automatiques (methode 2 : batch + GitHub Actions cron)
 
-Ce blog utilise la **methode 2** du systeme PBN GEO datashake (par opposition a la methode 1 utilisee sur como-blog-ai qui repose sur des routines CCR cloud). Voir spec master `geo-pbn-create-articles-batch` dans 000 Data.
+Ce blog utilise la **methode 2** du systeme PBN GEO datashake (par opposition a la methode 1 utilisee sur como-blog-ai qui repose sur des routines CCR cloud). Voir spec master `geo-pbn-create-article-evergreen` dans 000 Data.
 
 ### Principe
 
-- **Production en batch local** : 1x/mois Damien lance `/create-articles-batch` sur son Mac, qui rredige N articles d'un coup avec Opus 4.7 (sans limite Stream idle timeout). La skill pose 2 questions au debut (source roadmap + nombre d'articles), puis tourne en autonomie.
-- **Stockage en attente** : chaque article est ecrit avec un frontmatter `publishDate` correspondant a sa `scheduled_date` dans la roadmap. Hugo (`buildFuture: false` par defaut) masque automatiquement les articles dont `publishDate > today` lors du build.
+- **Production locale polyvalente** : Damien lance `/create-article-evergreen` sur son Mac (Opus 4.7, sans limite Stream idle timeout). La skill propose 3 modes au debut :
+  - **(A) Roadmap du blog** : N premieres entrees `todo` triees par scheduled_date (cas batch mensuel)
+  - **(B) Roadmap externe** : roadmap fournie par l'utilisateur (Sheet d'un consultant, KW d'un client)
+  - **(C) KW a la demande** : 1 ou plusieurs KW fournis dans le chat (ponctuel)
+
+  Pour chaque mode, 3 strategies de scheduling possibles :
+  - Garder les `scheduled_date` source (defaut)
+  - Cascade remapping a partir d'une date X (decale en avant les entrees suivantes)
+  - Prochain slot dispo dans la cadence (mardi/vendredi non occupe par roadmap.yaml)
+
+- **Stockage** : chaque article est ecrit avec un frontmatter `publishDate` correspondant a la date de publication finale apres scheduling. Si publishDate > today : Hugo (`buildFuture: false`) masque automatiquement l'article jusqu'a la date. Si publishDate <= today (mode C immediate) : visible des le push.
+
 - **Publication automatique** : un GitHub Actions cron (defini dans `.github/workflows/hugo.yml`, schedule `0 1 * * 2,5` = mardi + vendredi 3h Paris) rebuild le site 2x/semaine. Chaque rebuild inclut les articles dont `publishDate <= today`, ce qui les fait apparaitre sur le site public sans intervention humaine.
 
 ### Roadmap
@@ -261,7 +271,7 @@ Fichier : `roadmap.yaml` a la racine du repo (40 entrees au 25/04/2026, source H
 ### Cycle complet de publication d'un article (timeline type)
 
 1. Damien renseigne le KW dans la roadmap (`status: todo`, scheduled_date dans le futur)
-2. 1x/mois, Damien lance `/create-articles-batch` -> N articles redings avec `publishDate` futur, status passe a `queued`
+2. 1x/mois, Damien lance `/create-article-evergreen` -> N articles redings avec `publishDate` futur, status passe a `queued`
 3. Damien relit les articles, push sur GitHub
 4. Sur push, GitHub Actions rebuild le site (mais les nouveaux articles restent invisibles, publishDate futur)
 5. Mardi/vendredi 3h Paris, GitHub Actions cron rebuild le site -> les articles dont publishDate <= today apparaissent automatiquement
@@ -277,7 +287,7 @@ Fichier : `roadmap.yaml` a la racine du repo (40 entrees au 25/04/2026, source H
 
 | Aspect | como-blog-ai (methode 1) | ma-bonne-sante (methode 2) |
 |---|---|---|
-| Skill principale | `/create-article-auto` (CCR cloud) | `/create-articles-batch` (local) |
+| Skill principale | `/create-article-auto` (CCR cloud) | `/create-article-evergreen` (local) |
 | Frequence run | 2x/sem auto | 1x/mois manuel |
 | Modele | Sonnet 4.6 (force, bug Opus stream timeout) | Opus 4.7 |
 | Fetch concurrents | Bloque par sandbox cloud | Marche normalement |
