@@ -266,8 +266,8 @@ Frontmatter (REGLE CLE : `publishDate` resolu a l'Etape 1) :
 ---
 title: "[Title]"
 translationKey: "[slug-generique-FR-EN]"
-date: "[YYYY-MM-DD]"             # date de redaction (today)
-lastmod: "[YYYY-MM-DD]"
+date: "[date resolue par l'Etape 1]"          # IMPORTANT : alignee sur publishDate (date d'apparition publique reelle), pas sur today. Sinon l'article affiche au lecteur la date de redaction au lieu de la date de mise en ligne, ce qui cree un decalage visible.
+lastmod: "[date resolue par l'Etape 1]"       # idem date
 publishDate: "[date resolue par l'Etape 1]"   # CLE : Hugo masque tant que publishDate > today
 description: "[Meta description <=155]"
 categories: ["[Categorie FR]"]
