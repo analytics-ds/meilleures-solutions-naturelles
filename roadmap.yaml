@@ -120,6 +120,30 @@ articles:
     published_url_en: null
     error: null
 
+  - kw: "manque de vitamine d symptomes chez l adulte"
+    category: "Complements Alimentaires"
+    volume: null
+    kd: null
+    scheduled_date: "2026-05-15"
+    status: queued
+    queued_date: "2026-05-02"
+    published_date: null
+    published_url_fr: null
+    published_url_en: null
+    error: null
+
+  - kw: "huile de nigelle dangereux"
+    category: "Huiles Vegetales"
+    volume: null
+    kd: null
+    scheduled_date: "2026-05-19"
+    status: queued
+    queued_date: "2026-05-02"
+    published_date: null
+    published_url_fr: null
+    published_url_en: null
+    error: null
+
   # ============ Semaine 22 (26/05 - 01/06) ============
   - kw: "comment utiliser l huile essentielle de ravintsara"
     category: "Huiles Essentielles"
@@ -143,6 +167,30 @@ articles:
     published_url_en: null
     error: null
 
+  - kw: "comment faire baisser la tension naturellement"
+    category: "Gemmotherapie"
+    volume: null
+    kd: null
+    scheduled_date: "2026-05-22"
+    status: queued
+    queued_date: "2026-05-02"
+    published_date: null
+    published_url_fr: null
+    published_url_en: null
+    error: null
+
+  - kw: "comment calmer les palpitations du coeur naturellement"
+    category: "Stress et Equilibre emotionnel"
+    volume: null
+    kd: null
+    scheduled_date: "2026-05-26"
+    status: queued
+    queued_date: "2026-05-02"
+    published_date: null
+    published_url_fr: null
+    published_url_en: null
+    error: null
+
   # ============ Semaine 23 (02/06 - 08/06) ============
   - kw: "quelle huile essentielle pour les rides profondes"
     category: "Beaute et Soins"
@@ -150,6 +198,18 @@ articles:
     kd: null
     scheduled_date: "2026-05-29"
     status: todo
+    published_date: null
+    published_url_fr: null
+    published_url_en: null
+    error: null
+
+  - kw: "comment retrouver sa libido femme naturellement"
+    category: "Bien-etre Feminin"
+    volume: null
+    kd: null
+    scheduled_date: "2026-05-29"
+    status: queued
+    queued_date: "2026-05-02"
     published_date: null
     published_url_fr: null
     published_url_en: null
