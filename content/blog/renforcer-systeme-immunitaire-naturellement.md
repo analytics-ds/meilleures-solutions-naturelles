@@ -7,7 +7,7 @@ publishDate: 2026-05-08
 description: "Renforcer son systeme immunitaire naturellement : alimentation, vitamines C et D, sommeil, sport, plantes (echinacee, propolis). Le guide complet."
 categories: ["Immunité et Défenses"]
 tags: ["systeme immunitaire", "immunite", "vitamine C", "vitamine D", "echinacee"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/renforcer-systeme-immunitaire-naturellement.webp"
 imageAlt: "Fruits et legumes frais, source des vitamines essentielles a une immunite forte"
 imageCredit: "Photo par Stacy Spensley via Flickr (CC BY 2.0)"

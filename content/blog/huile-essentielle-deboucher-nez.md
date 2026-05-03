@@ -7,7 +7,7 @@ publishDate: 2026-05-01
 description: "Quelle huile essentielle pour deboucher le nez ? Menthe poivree, eucalyptus radie, ravintsara : decouvrez les 5 plus efficaces et la methode d'inhalation."
 categories: ["Respiration"]
 tags: ["huile essentielle", "nez bouche", "menthe poivree", "eucalyptus radie", "inhalation"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/huile-essentielle-deboucher-nez.webp"
 imageAlt: "Plante aromatique fraiche, source des huiles essentielles utilisees pour deboucher le nez"
 imageCredit: "Photo par sermarr erGuiri via Flickr (CC BY 2.0)"

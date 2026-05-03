@@ -7,7 +7,7 @@ publishDate: 2026-04-28
 description: "Chamomile, linden, valerian, passionflower: discover the 7 best teas for sleep, their precise dosages, and the blends that really work."
 categories: ["Sleep and Relaxation"]
 tags: ["herbal tea", "sleep", "chamomile", "valerian", "passionflower"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/meilleure-tisane-pour-dormir.webp"
 imageAlt: "Cup of chamomile tea, one of the best plants to promote sleep"
 imageCredit: "Photo by IchStyle via Flickr (CC BY 2.0)"

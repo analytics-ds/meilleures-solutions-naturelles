@@ -7,7 +7,7 @@ publishDate: 2026-05-05
 description: "Fig bud: digestive and nervous indications, drop dosage, contraindications. The complete guide to the great bud of the gastric sphere."
 categories: ["Gemmotherapy"]
 tags: ["fig bud", "gemmotherapy", "stress", "digestion", "sleep"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/bourgeon-figuier-utilisation-bienfaits.webp"
 imageAlt: "Bursting bud, illustration of the extracts used in gemmotherapy"
 imageCredit: "Photo by woodleywonderworks via Flickr (CC BY 2.0)"

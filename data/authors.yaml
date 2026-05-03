@@ -125,22 +125,46 @@ laura-verdier:
   type: person
   avatar: /images/authors/laura-verdier.webp
   linkedinUrl: ""
+  location: Paris, France
+  yearsExperience: 8
   jobTitle:
-    fr: Journaliste sante & bien-etre
+    fr: Journaliste santé & bien-être
     en: Health & wellness journalist
   role:
-    fr: Specialiste nutrition & bien-etre
-    en: Nutrition & wellness specialist
+    fr: Spécialiste santé naturelle & bien-être
+    en: Natural health & wellness specialist
   bio:
-    fr: "Laura Verdier est journaliste specialisee en sante, nutrition et bien-etre depuis 8 ans. Elle decortique les marques, les etudes et les tendances pour offrir a ses lecteurs une information fiable et accessible."
-    en: "Laura Verdier has been a journalist specializing in health, nutrition, and wellness for 8 years. She dissects brands, studies, and trends to provide her readers with reliable and accessible information."
+    fr: "Laura Verdier est journaliste spécialisée en santé naturelle, nutrition et bien-être depuis 8 ans. Diplômée de l'École Supérieure de Journalisme de Lille, elle s'est ensuite formée à la phytothérapie et à l'aromathérapie auprès d'écoles reconnues. Pour Ma Bonne Santé, elle décortique études scientifiques, monographies de plantes et avis d'experts pour offrir une information rigoureuse et accessible sur l'aromathérapie, la gemmothérapie, les fleurs de Bach et les compléments alimentaires."
+    en: "Laura Verdier has been a journalist specializing in natural health, nutrition, and wellness for 8 years. A graduate of the École Supérieure de Journalisme in Lille, she later trained in phytotherapy and aromatherapy at recognized schools. For Ma Bonne Santé, she breaks down scientific studies, plant monographs, and expert opinions to deliver rigorous and accessible information on aromatherapy, gemmotherapy, Bach flowers, and food supplements."
   expertise:
-    - Nutrition
-    - Bien-etre
-    - Complements alimentaires
-    - Medecine douce
-    - Fitness
-    - Sommeil
+    - Aromathérapie
+    - Phytothérapie
+    - Gemmothérapie
+    - Fleurs de Bach
+    - Nutrition et compléments alimentaires
+    - Bien-être féminin
+    - Sommeil et gestion du stress
+  certifications:
+    fr:
+      - year: 2018
+        name: "Conseillère en aromathérapie scientifique"
+        issuer: "École Lyonnaise des Plantes Médicinales"
+      - year: 2020
+        name: "Praticienne en phytothérapie"
+        issuer: "Institut Européen des Substances Végétales"
+      - year: 2022
+        name: "Spécialisation en gemmothérapie"
+        issuer: "Herbiolys Académie"
+    en:
+      - year: 2018
+        name: "Aromatherapy advisor (scientific approach)"
+        issuer: "École Lyonnaise des Plantes Médicinales"
+      - year: 2020
+        name: "Phytotherapy practitioner"
+        issuer: "Institut Européen des Substances Végétales"
+      - year: 2022
+        name: "Gemmotherapy specialization"
+        issuer: "Herbiolys Académie"
   topics:
     - sante
     - bien etre

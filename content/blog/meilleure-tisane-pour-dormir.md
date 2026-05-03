@@ -7,7 +7,7 @@ publishDate: 2026-04-28
 description: "Camomille, tilleul, valeriane, passiflore : decouvrez les 7 meilleures tisanes pour dormir, leurs dosages precis et les melanges qui fonctionnent vraiment."
 categories: ["Sommeil et Détente"]
 tags: ["tisane", "sommeil", "camomille", "valeriane", "passiflore"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/meilleure-tisane-pour-dormir.webp"
 imageAlt: "Tasse de tisane de camomille, l'une des meilleures plantes pour favoriser le sommeil"
 imageCredit: "Photo par IchStyle via Flickr (CC BY 2.0)"

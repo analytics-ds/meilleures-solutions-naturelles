@@ -5,7 +5,7 @@ date: 2026-05-02
 lastmod: 2026-05-02
 publishDate: 2026-05-02
 description: "Ménopause, stress, pilule : causes de la baisse de libido chez la femme et solutions naturelles avec la maca, l'ashwagandha et les plantes adaptogènes."
-categories: ["Bien-etre Feminin"]
+categories: ["Bien-être Féminin"]
 tags: ["libido féminine", "maca", "ashwagandha", "désir sexuel", "ménopause"]
 author: laura-verdier
 image: "/images/blog/retrouver-libido-femme-naturellement.webp"

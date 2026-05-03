@@ -5,7 +5,7 @@ lastmod: 2026-04-22
 description: "Huile essentielle anti-moustique : les HE les plus efficaces, dosages, précautions et produits Pranarôm pour se protéger naturellement."
 categories: ["Huiles Essentielles", "Nuisibles"]
 tags: ["anti-moustique", "citronnelle", "eucalyptus citronné", "géranium", "Pranarôm"]
-author: "La Rédaction"
+author: laura-verdier
 image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=400&fit=crop"
 imageAlt: "Flacons d'huiles essentielles anti-moustiques posés sur une table en bois"
 faq:

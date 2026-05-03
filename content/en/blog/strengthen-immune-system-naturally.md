@@ -7,7 +7,7 @@ publishDate: 2026-05-08
 description: "Strengthen your immune system naturally: nutrition, vitamins C and D, sleep, exercise, plants (echinacea, propolis). The complete guide."
 categories: ["Immunity and Defenses"]
 tags: ["immune system", "immunity", "vitamin C", "vitamin D", "echinacea"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/renforcer-systeme-immunitaire-naturellement.webp"
 imageAlt: "Fresh fruits and vegetables, source of essential vitamins for strong immunity"
 imageCredit: "Photo by Stacy Spensley via Flickr (CC BY 2.0)"

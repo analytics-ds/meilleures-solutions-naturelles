@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $lang := .Site.Language.Lang }}
+
+<section class="authors-list-hero">
+    <div class="container">
+        <span class="hero-badge">{{ if eq $lang "en" }}Editorial team{{ else }}Équipe éditoriale{{ end }}</span>
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="hero-description">{{ . }}</p>{{ end }}
+    </div>
+</section>
+
+<section class="authors-grid-section">
+    <div class="container">
+        <div class="authors-grid">
+            {{ range $slug, $data := .Site.Data.authors }}
+            {{ $articles := where site.RegularPages "Params.author" $slug }}
+            {{ $articles = where $articles "Section" "blog" }}
+            {{ $count := len $articles }}
+            {{ if gt $count 0 }}
+            <a href="{{ (printf "authors/%s/" $slug) | relURL }}" class="author-card">
+                {{ with $data.avatar }}
+                <img src="{{ . | relURL }}" alt="{{ $data.name }}" class="author-card-avatar" width="96" height="96" loading="lazy">
+                {{ else }}
+                <span class="author-card-avatar author-avatar-placeholder">{{ slicestr $data.name 0 1 }}</span>
+                {{ end }}
+                <div class="author-card-body">
+                    <h3>{{ $data.name }}</h3>
+                    {{ with index $data.role $lang }}<p class="author-card-role">{{ . }}</p>{{ end }}
+                    {{ with index $data.bio $lang }}<p class="author-card-bio">{{ . | truncate 140 }}</p>{{ end }}
+                    <span class="author-card-count">{{ $count }} article{{ if gt $count 1 }}s{{ end }}</span>
+                </div>
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

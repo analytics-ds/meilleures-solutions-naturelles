@@ -6,7 +6,7 @@ lastmod: 2026-04-22
 draft: false
 categories: ["Aromathérapie"]
 tags: ["débutant", "guide", "précautions"]
-author: "La Rédaction"
+author: laura-verdier
 image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&h=400&fit=crop"
 ---
 

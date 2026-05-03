@@ -5,7 +5,7 @@ date: 2026-05-02
 lastmod: 2026-05-02
 publishDate: 2026-05-02
 description: "Alimentation, activité physique, gemmothérapie, magnésium : méthodes naturelles validées pour faire baisser la tension artérielle durablement."
-categories: ["Gemmotherapie"]
+categories: ["Gemmothérapie"]
 tags: ["tension artérielle", "hypertension", "gemmothérapie", "aubépine", "remèdes naturels"]
 author: laura-verdier
 image: "/images/blog/faire-baisser-tension-naturellement.webp"

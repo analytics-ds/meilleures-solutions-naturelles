@@ -15,10 +15,17 @@
             <p class="article-description">{{ . }}</p>
             {{ end }}
             {{ with .Params.author }}
-            <div class="article-author">
-                <span class="author-label">Par</span>
-                <span class="author-name">{{ . }}</span>
-            </div>
+            {{ $authorData := index $.Site.Data.authors . }}
+            {{ $lang := $.Site.Language.Lang }}
+            <a href="{{ (printf "authors/%s/" .) | relURL }}" class="article-author">
+                {{ with $authorData.avatar }}
+                <img src="{{ . | relURL }}" alt="{{ $authorData.name }}" class="article-author-avatar" width="40" height="40" loading="lazy">
+                {{ end }}
+                <span class="article-author-text">
+                    <span class="author-label">Par</span>
+                    <span class="author-name">{{ with $authorData }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
+                </span>
+            </a>
             {{ end }}
             <div class="article-tags">
                 {{ range .Params.tags }}
@@ -37,16 +44,34 @@
             {{ .Content }}
 
             <!-- Bloc auteur -->
-            <div class="author-block">
-                <div class="author-block-avatar">
-                    <span class="author-block-avatar-initials">{{ substr (default "LR" .Params.author) 0 1 }}{{ substr (default "LR" .Params.author) (sub (len (default "LR" .Params.author)) 1) 1 }}</span>
-                </div>
+            {{ with .Params.author }}
+            {{ $authorData := index $.Site.Data.authors . }}
+            {{ $lang := $.Site.Language.Lang }}
+            {{ if $authorData }}
+            <aside class="author-block">
+                <a href="{{ (printf "authors/%s/" .) | relURL }}" class="author-block-link">
+                    {{ with $authorData.avatar }}
+                    <img src="{{ . | relURL }}" alt="{{ $authorData.name }}" class="author-block-avatar" width="96" height="96" loading="lazy">
+                    {{ else }}
+                    <span class="author-block-avatar author-avatar-placeholder">{{ slicestr $authorData.name 0 1 }}</span>
+                    {{ end }}
+                </a>
                 <div class="author-block-info">
-                    <h4>{{ .Params.author | default .Site.Params.author_name }}</h4>
-                    <p class="author-job">{{ .Site.Params.author_job_title }}</p>
-                    <p>{{ .Site.Params.author_bio }}</p>
+                    <span class="author-block-label">À propos de l'auteur</span>
+                    <h4><a href="{{ (printf "authors/%s/" .) | relURL }}">{{ $authorData.name }}</a></h4>
+                    {{ with index $authorData.role $lang }}<p class="author-block-role">{{ . }}</p>{{ end }}
+                    {{ with index $authorData.bio $lang }}<p class="author-block-bio">{{ . }}</p>{{ end }}
+                    {{ with $authorData.expertise }}
+                    <p class="author-block-expertise">
+                        <span class="author-block-expertise-label">Expertise :</span>
+                        {{ range $i, $e := . }}{{ if $i }}, {{ end }}<span>{{ $e }}</span>{{ end }}
+                    </p>
+                    {{ end }}
+                    <a href="{{ (printf "authors/%s/" .) | relURL }}" class="author-block-cta">Voir tous ses articles →</a>
                 </div>
-            </div>
+            </aside>
+            {{ end }}
+            {{ end }}
         </div>
     </div>
 

@@ -5,7 +5,7 @@ date: 2026-05-02
 lastmod: 2026-05-02
 publishDate: 2026-05-02
 description: "Fatigue chronique, douleurs osseuses, immunité fragile : les symptômes d'un manque de vitamine D chez l'adulte et les solutions naturelles pour y remédier."
-categories: ["Complements Alimentaires"]
+categories: ["Compléments Alimentaires"]
 tags: ["vitamine D", "carence", "symptômes", "compléments alimentaires", "santé osseuse"]
 author: laura-verdier
 image: "/images/blog/manque-vitamine-d-symptomes-adulte.webp"

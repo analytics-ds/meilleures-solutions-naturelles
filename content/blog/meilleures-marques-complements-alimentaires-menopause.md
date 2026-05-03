@@ -4,7 +4,7 @@ title: "Quelles sont les meilleures marques de complements alimentaires pour la 
 date: "2026-04-29"
 lastmod: "2026-04-29"
 description: "Comparatif des meilleures marques de complements alimentaires menopause : HerbalGem, Arkopharma, Nutergia, Naturactive, Solgar. Avis 2026."
-categories: ["Complements Alimentaires", "Bien-etre Feminin"]
+categories: ["Compléments Alimentaires", "Bien-être Féminin"]
 tags: ["menopause", "complements alimentaires", "gemmotherapie", "phytotherapie", "bien-etre feminin"]
 author: laura-verdier
 image: "/images/blog/meilleures-marques-complements-alimentaires-menopause.webp"

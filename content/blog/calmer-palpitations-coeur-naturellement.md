@@ -5,7 +5,7 @@ date: 2026-05-02
 lastmod: 2026-05-02
 publishDate: 2026-05-02
 description: "Cohérence cardiaque, magnésium et aubépine : solutions naturelles pour calmer les palpitations cardiaques et gérer le stress associé."
-categories: ["Stress et Equilibre emotionnel"]
+categories: ["Stress et Équilibre émotionnel"]
 tags: ["palpitations", "cohérence cardiaque", "magnésium", "aubépine", "stress cardiaque"]
 author: laura-verdier
 image: "/images/blog/calmer-palpitations-coeur-naturellement.webp"

@@ -7,7 +7,7 @@ publishDate: 2026-05-05
 description: "Bourgeon de figuier : indications digestives et nerveuses, posologie en gouttes, contre-indications. Le guide complet du grand bourgeon de la sphere gastrique."
 categories: ["Gemmothérapie"]
 tags: ["bourgeon de figuier", "gemmotherapie", "stress", "digestion", "sommeil"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/bourgeon-figuier-utilisation-bienfaits.webp"
 imageAlt: "Bourgeon en debourrement, illustration des extraits utilises en gemmotherapie"
 imageCredit: "Photo par woodleywonderworks via Flickr (CC BY 2.0)"

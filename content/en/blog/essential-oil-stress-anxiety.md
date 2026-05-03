@@ -7,7 +7,7 @@ publishDate: 2026-04-25
 description: "Discover the 6 most effective essential oils against stress and anxiety: lavender, Roman chamomile, ylang-ylang. Synergies and precautions."
 categories: ["Stress and Emotional Balance"]
 tags: ["essential oil", "stress", "anxiety", "true lavender", "Roman chamomile"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/huile-essentielle-stress-anxiete.webp"
 imageAlt: "Lavender stems, the signature plant of anti-stress and calming essential oils"
 imageCredit: "Photo by anathea via Flickr (CC BY 2.0)"

@@ -7,7 +7,7 @@ publishDate: "2026-05-01"
 description: "Cold therapy, essential oils, massage and gemmotherapy: 8 natural methods to relieve a migraine without medication."
 categories: ["Pain and Joints"]
 tags: ["migraine", "headache", "essential oil", "peppermint", "lavender", "gemmotherapy", "natural remedy"]
-author: "laura-verdier"
+author: laura-verdier
 faq:
   - question: "How do you get rid of a migraine quickly?"
     answer: "To relieve a migraine quickly, the first step is to retreat to a dark, quiet room. Applying a cold compress to the neck or forehead and gently massaging the temples with one diluted drop of peppermint essential oil are the most effective actions to combine at the very start of an attack."

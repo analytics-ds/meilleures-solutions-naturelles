@@ -6,7 +6,7 @@ lastmod: 2026-04-22
 draft: false
 categories: ["Gemmothérapie"]
 tags: ["bourgeons", "guide", "macérat"]
-author: "La Rédaction"
+author: laura-verdier
 image: "https://images.unsplash.com/photo-1457530378978-8bac673b8062?w=800&h=400&fit=crop"
 ---
 

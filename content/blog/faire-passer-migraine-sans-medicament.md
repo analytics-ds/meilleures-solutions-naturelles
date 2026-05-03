@@ -7,7 +7,7 @@ publishDate: "2026-05-01"
 description: "Froid, huiles essentielles, massages et gemmothérapie : 8 méthodes naturelles pour faire passer une migraine sans médicament."
 categories: ["Douleurs et Articulations"]
 tags: ["migraine", "maux de tête", "huile essentielle", "menthe poivrée", "lavande", "gemmothérapie", "remède naturel"]
-author: "laura-verdier"
+author: laura-verdier
 image: "/images/blog/faire-passer-migraine-sans-medicament.webp"
 imageAlt: "Méthodes naturelles pour soulager une migraine sans médicament"
 imageCredit: "Photo par lindz graham via Flickr (CC BY 2.0)"

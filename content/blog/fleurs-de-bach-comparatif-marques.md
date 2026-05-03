@@ -13,7 +13,7 @@ tags:
   - "liste des 38 fleurs"
   - "Florna"
   - "guide d'achat"
-author: "La Redaction"
+author: laura-verdier
 image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=400&fit=crop"
 imageAlt: "Fleurs sauvages jaunes dans un pré, symboles des elixirs floraux du Dr Bach"
 ---

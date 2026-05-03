@@ -5,7 +5,7 @@ date: 2026-05-02
 lastmod: 2026-05-02
 publishDate: 2026-05-02
 description: "Huile de nigelle : dangers réels, contre-indications et précautions d'emploi pour utiliser cette huile végétale en toute sécurité."
-categories: ["Huiles Vegetales"]
+categories: ["Huiles Végétales"]
 tags: ["huile de nigelle", "contre-indications", "précautions", "huile végétale", "thymoquinone"]
 author: laura-verdier
 image: "/images/blog/huile-de-nigelle-dangereux.webp"
