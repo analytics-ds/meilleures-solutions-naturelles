@@ -8,6 +8,7 @@ description: "Comparatif des meilleures marques de spray anti-moustique naturel 
 categories: ["Aromathérapie"]
 tags: ["anti-moustique", "spray naturel", "comparatif", "huiles essentielles", "été"]
 author: laura-verdier
+featured: true
 image: "/images/blog/spray-anti-moustique-naturel-meilleures-marques.webp"
 imageAlt: "Flacons d'huiles essentielles aromathérapie pour un spray anti-moustique naturel"
 imageCredit: "Photo par Naomi King via Flickr (CC BY 2.0)"

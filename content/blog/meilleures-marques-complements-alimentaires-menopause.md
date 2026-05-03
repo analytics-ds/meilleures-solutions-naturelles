@@ -7,6 +7,7 @@ description: "Comparatif des meilleures marques de complements alimentaires meno
 categories: ["Compléments Alimentaires", "Bien-être Féminin"]
 tags: ["menopause", "complements alimentaires", "gemmotherapie", "phytotherapie", "bien-etre feminin"]
 author: laura-verdier
+featured: true
 image: "/images/blog/meilleures-marques-complements-alimentaires-menopause.webp"
 imageAlt: "Trefle rouge et framboises, plantes naturelles utilisees dans les complements alimentaires pour la menopause"
 imageCredit: "Photo par grendelkhan via Flickr (CC BY-SA 2.0)"

@@ -40,7 +40,16 @@
     {{ end }}
 
     <div class="article-content">
-        <div class="container container-narrow">
+        <div class="article-content-wrapper">
+            {{ if and (gt (len .TableOfContents) 50) (ne .Params.toc false) }}
+            <aside class="article-toc-sidebar" aria-label="Sommaire de l'article">
+                <div class="article-toc-sticky">
+                    <h2 class="article-toc-title">Sommaire</h2>
+                    {{ .TableOfContents }}
+                </div>
+            </aside>
+            {{ end }}
+            <div class="article-body">
             {{ .Content }}
 
             <!-- Bloc auteur -->
@@ -72,6 +81,7 @@
             </aside>
             {{ end }}
             {{ end }}
+            </div>
         </div>
     </div>
 
@@ -95,4 +105,30 @@
     </footer>
 </article>
 
+<script>
+// TOC active state (intersection observer + smooth scroll offset)
+(function() {
+    var tocLinks = document.querySelectorAll('.article-toc-sticky a');
+    if (!tocLinks.length) return;
+    var headings = [];
+    tocLinks.forEach(function(a) {
+        var id = a.getAttribute('href');
+        if (id && id.indexOf('#') === 0) {
+            var h = document.getElementById(decodeURIComponent(id.slice(1)));
+            if (h) headings.push({ link: a, heading: h });
+        }
+    });
+    if (!headings.length) return;
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            var match = headings.find(function(h) { return h.heading === entry.target; });
+            if (match && entry.isIntersecting) {
+                tocLinks.forEach(function(a) { a.classList.remove('active'); });
+                match.link.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-100px 0px -60% 0px' });
+    headings.forEach(function(h) { io.observe(h.heading); });
+})();
+</script>
 {{ end }}

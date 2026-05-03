@@ -7,6 +7,7 @@ description: "Compare the best menopause supplement brands : HerbalGem, Arkophar
 categories: ["Food Supplements", "Women's Wellness"]
 tags: ["menopause", "food supplements", "gemmotherapy", "phytotherapy", "women's wellness"]
 author: laura-verdier
+featured: true
 image: "/images/blog/meilleures-marques-complements-alimentaires-menopause.webp"
 imageAlt: "Red clover and raspberries, natural plants used in menopause food supplements"
 imageCredit: "Photo by grendelkhan via Flickr (CC BY-SA 2.0)"
