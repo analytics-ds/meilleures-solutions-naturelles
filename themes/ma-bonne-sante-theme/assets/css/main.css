@@ -278,6 +278,8 @@ img {
 .hero-content {
     position: relative;
     z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
 }
 
 .hero-badge {
@@ -1316,6 +1318,7 @@ img {
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin-top: 2rem;
 }
