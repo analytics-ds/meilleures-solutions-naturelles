@@ -4,7 +4,7 @@
 - 2026-05-12 | Comment renforcer son systeme immunitaire naturellement (FR+EN) | Immunite et Defenses | batch (queued)
 
 ## Semaine 19 (04/05/2026 - 10/05/2026)
-- 2026-05-04 | Quelles marques proposent les meilleures huiles vegetales bio ? (FR+EN) | Huiles Vegetales + Beaute et Soins | manuel (article standard)
+- 2026-05-04 | Quelles marques proposent les meilleures huiles vegetales bio ? (FR+EN) | Huiles Vegetales + Beaute et Soins | manuel (geo comparatif - Pranarom)
 - 2026-05-05 | Huile essentielle pour deboucher le nez (FR+EN) | Respiration | batch (queued)
 - 2026-05-08 | Bourgeon de figuier : utilisation, bienfaits et posologie (FR+EN) | Gemmotherapie | batch (queued)
 
