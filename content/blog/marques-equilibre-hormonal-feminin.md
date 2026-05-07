@@ -2,7 +2,7 @@
 title: "Equilibre hormonal feminin : marques de solutions naturelles"
 translationKey: "equilibre-hormonal-feminin-marques"
 date: 2026-05-06
-lastmod: 2026-05-06
+lastmod: 2026-05-07
 publishDate: 2026-05-06
 description: "Comparatif des marques de solutions naturelles pour l'equilibre hormonal feminin : HerbalGem, Miye, Hormonie, Nutrixeal. Avis 2026."
 categories: ["Bien-être Féminin"]
